@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="1000dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/gradient3">
+<LinearLayout
+    android:id="@+id/main_level"
+    android:layout_width="match_parent"
+    android:layout_height="1000dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/head_layout_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/title_search_board"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#023377"
+            android:text="@string/customization_search" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/description_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/show"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:textColor="#023377"
+            android:text="@string/show_films_or_serials_or_all" />
+
+        <LinearLayout
+            android:id="@+id/show_option_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+           <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/show_all_films_serials"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/mybutton"
+                android:text="@string/show_all" />
+
+           <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/show__films"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/mybutton"
+                android:text="@string/show_films" />
+
+           <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/show__serials"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:background="@drawable/mybutton"
+                android:text="@string/show_serials" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/country_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/country"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:textColor="#023377"
+            android:text="@string/country" />
+
+        <TextView
+            android:id="@+id/country_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="220dp"
+            android:textColor="#023377"
+            android:text="Россия" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/genre_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/genre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:textColor="#023377"
+            android:text="Жанр" />
+
+        <TextView
+            android:id="@+id/genre_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="220dp"
+            android:textColor="#023377"
+            android:text="Комедия" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/year_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/year"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:textColor="#023377"
+            android:text="Год" />
+
+        <TextView
+            android:id="@+id/year_period"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="220dp"
+            android:textColor="#023377"
+            android:text="с 1998 до 2017" />
+
+</LinearLayout>
+    <LinearLayout
+        android:id="@+id/rating_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical">
+        <LinearLayout
+            android:id="@+id/rating_level"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+        <TextView
+            android:id="@+id/rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:textColor="#023377"
+            android:text="@string/rating" />
+
+        <TextView
+            android:id="@+id/rating_any"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="220dp"
+            android:textColor="#023377"
+            android:text="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/slider_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp">
+        <com.google.android.material.slider.RangeSlider
+            android:id="@+id/slider_rating"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:valueFrom="1"
+            android:valueTo="10"
+            android:stepSize="1"
+            app:thumbColor="@color/white"
+            app:trackColor="#2040F4"
+            app:thumbStrokeColor="@color/black"
+            app:values="@array/initial_slider_values"/>
+    </LinearLayout>
+        <LinearLayout
+            android:id="@+id/slider_value"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/range_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="14dp"
+                android:textColor="#023377"
+                android:text="@string/_1" />
+
+            <TextView
+                android:id="@+id/range_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="324dp"
+                android:textColor="#023377"
+                android:text="@string/_10" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/sort_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/sort"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:textColor="#023377"
+            android:text="Сортировать" />
+
+        <LinearLayout
+            android:id="@+id/sort_level"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+           <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/sort_date"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/mybutton"
+                android:text="Дата" />
+
+           <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/sort__population"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/mybutton"
+                android:text="Популярность" />
+
+           <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/sort_rating"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:background="@drawable/mybutton"
+                android:text="Рейтинг" />
+
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/viewed_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/viewed_state_image_button"
+            android:layout_width="38dp"
+            android:layout_height="wrap_content"
+            android:background="#00555555"
+            android:layout_marginLeft="20dp"
+             />
+
+        <TextView
+            android:id="@+id/viewed_state_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="60dp"
+            android:textColor="#023377"
+           />
+    </LinearLayout>
+   <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/apply_settings"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
+        android:layout_gravity="right"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/mybutton"
+        android:text="Применить" />
+    <androidx.legacy.widget.Space
+        android:layout_width="wrap_content"
+        android:layout_height="300dp"/>
+</LinearLayout>
+</ScrollView>

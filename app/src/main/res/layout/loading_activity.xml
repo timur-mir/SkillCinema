@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fon_tekstura">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/introHeaderLoadingFragment"
+        android:text="Skillcinema"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="22dp"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/caveat_variablefont_wght"
+        android:textColor="#A0359F"
+        android:textSize="44sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+
+    <ImageView
+        android:id="@+id/introImageViewLoadingFragment"
+        android:layout_width="360dp"
+        android:layout_height="270dp"
+        android:layout_marginTop="360dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.431"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/inhouse"
+        />
+
+    <ProgressBar
+        android:id="@+id/introProgressBarLoadingFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/introImageViewLoadingFragment"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+    <!--    android:indeterminateDrawable="@drawable/custom_progressbar"-->
+</androidx.constraintlayout.widget.ConstraintLayout>

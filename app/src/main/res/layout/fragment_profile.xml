@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="1200dp"
+    android:background="@drawable/fon_tekstura">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/viewed_section"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mainHeaderFilmLists">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/viewedHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="22dp"
+            android:layout_marginTop="42dp"
+            android:text="Просмотренно"
+            android:fontFamily="@font/caveat_variablefont_wght"
+            android:textColor="#F86707"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/viewedAll"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="42dp"
+            android:layout_marginRight="22dp"
+            android:gravity="right|center_vertical"
+            android:fontFamily="@font/caveat_variablefont_wght"
+            android:text=""
+            android:textColor="#F86707"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/lookedCollectionArea"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/viewedAll">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/movies_viewed_list"
+                android:layout_width="match_parent"
+                android:layout_height="220dp"
+                android:layout_marginLeft="22dp"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center_vertical"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:itemCount="5" />
+
+<!--            <androidx.appcompat.widget.AppCompatTextView-->
+<!--                android:id="@+id/clear_history_collection_looked"-->
+<!--                android:layout_width="80dp"-->
+<!--                android:layout_height="42dp"-->
+<!--                android:layout_gravity="right|center_vertical"-->
+<!--                android:layout_marginRight="24dp"-->
+<!--                android:background="@color/white"-->
+<!--                android:text="Очистить историю "-->
+<!--                android:textColor="#2D6FDF"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toEndOf="@id/movies_viewed_list" />-->
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/first_level_col"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/lookedCollectionArea">
+
+            <LinearLayout
+                android:id="@+id/createCollectionArea"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toTopOf="@+id/first_level_col">
+
+                <ImageView
+                    android:id="@+id/createNewCollection_Second_Use"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="14dp"
+                    android:src="@drawable/plus" />
+
+                <TextView
+                    android:id="@+id/createNewCollectionView_Second_Use"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="14dp"
+                    android:fontFamily="@font/caveat_variablefont_wght"
+                    android:textColor="#F86707"
+                    android:textSize="22sp"
+                    android:text="Создать свою коллекцию"/>
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/collectionLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/createCollectionArea">
+
+                <ru.diplomnaya.skilllcinema.presentation.CustomViewCollection
+                    android:id="@+id/favourite_tile"
+                    android:layout_width="152dp"
+                    android:layout_height="152dp"
+                    android:layout_marginLeft="22dp" />
+
+                <ru.diplomnaya.skilllcinema.presentation.CustomViewCollection
+                    android:id="@+id/want_to_see"
+                    android:layout_width="152dp"
+                    android:layout_height="152dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_toEndOf="@id/favourite_tile" />
+            </RelativeLayout>
+            <!--            -->
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/second_level_col"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/first_level_col">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/this_interesting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="22dp"
+                android:text="Вам было интересно"
+                android:fontFamily="@font/caveat_variablefont_wght"
+                android:textColor="#F86707"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/viewedAllInteresting"
+                android:layout_width="50dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="22dp"
+                android:fontFamily="@font/caveat_variablefont_wght"
+                android:textColor="#F86707"
+                android:textSize="16sp"
+                android:gravity="right|center_vertical"
+                android:text=""
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:id="@+id/interestingCollectionArea"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="100dp"
+                android:layout_marginTop="30dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/viewedAllInteresting">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/interesting_films"
+                    android:layout_width="match_parent"
+                    android:layout_height="220dp"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:itemCount="5"
+                    tools:listitem="@layout/move_list" />
+
+<!--                <androidx.appcompat.widget.AppCompatTextView-->
+<!--                    android:id="@+id/clear_history_colllection_interesting"-->
+<!--                    android:layout_width="120dp"-->
+<!--                    android:layout_height="42dp"-->
+<!--                    android:layout_gravity="right|center_vertical"-->
+<!--                    android:layout_marginRight="22dp"-->
+<!--                    android:background="@color/white"-->
+<!--                    android:text="Очистить историю"-->
+<!--                    android:textColor="#2D6FDF"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    app:layout_constraintStart_toEndOf="@id/interesting_films" />-->
+
+            </LinearLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

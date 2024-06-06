@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:src="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+  android:background="@drawable/fon_tekstura">
+    <LinearLayout
+        android:id="@+id/main_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:id="@+id/title_period"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:textColor="@color/white"
+            android:layout_marginTop="30dp"
+            android:text="Период" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/title_period_from"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:layout_marginTop="12dp"
+                android:text="Искать в период с" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="18dp">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_view_from"
+                android:layout_width="306dp"
+                android:layout_height="260dp"
+                android:layout_gravity="center"
+                app:cardBackgroundColor="#F6BB63"
+                android:gravity="center"
+                app:cardCornerRadius="12dp"
+                app:strokeColor="#770C30"
+                app:strokeWidth="2dp">
+
+                <LinearLayout
+                    android:id="@+id/head_picker"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/date_interval"
+                        android:layout_width="88dp"
+                        android:layout_height="38dp"
+                        android:layout_gravity="left|center"
+                        android:gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:textSize="16sp"
+                        android:textColor="@color/active_page"
+                        android:text="1990-1999" />
+
+                    <LinearLayout
+                        android:id="@+id/page_navigation"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:orientation="horizontal">
+
+                        <ImageButton
+                            android:id="@+id/prev"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right|center"
+                            android:backgroundTint="@color/white"
+                            android:paddingRight="0dp"
+                            android:paddingLeft="0dp"
+                            android:gravity="center|center_vertical"
+                          android:src="@drawable/left_row" />
+
+                        <ImageButton
+                            android:id="@+id/next"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right|center"
+                            android:backgroundTint="@color/white"
+                            android:paddingRight="0dp"
+                            android:paddingLeft="0dp"
+                            android:gravity="center|center_vertical"
+                            android:src="@drawable/right_row" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/viewpager_date_from"
+                    android:layout_width="220dp"
+                    android:layout_height="220dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_marginTop="18dp" />
+            </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/title_period_to"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:layout_marginTop="12dp"
+                android:text="Искать в период до" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="18dp">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_view_to"
+                android:layout_width="306dp"
+                android:layout_height="260dp"
+                android:layout_gravity="center"
+                app:cardBackgroundColor="#78DF7D"
+                android:gravity="center"
+                app:cardCornerRadius="12dp"
+                app:strokeColor="#770C30"
+                app:strokeWidth="2dp">
+
+                <LinearLayout
+                    android:id="@+id/head_picker_to"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/date_interval_to"
+                        android:layout_width="88dp"
+                        android:layout_height="38dp"
+                        android:textSize="16sp"
+                        android:layout_gravity="left|center"
+                        android:textColor="@color/active_page"
+                        android:gravity="center"
+                        android:text="2010-2021" />
+
+                    <LinearLayout
+                        android:id="@+id/page_navigation_to"
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:gravity="right"
+                        android:orientation="horizontal">
+
+                        <ImageButton
+                            android:id="@+id/prev_to"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right|center"
+                            android:backgroundTint="@color/white"
+                            android:paddingRight="0dp"
+                            android:paddingLeft="0dp"
+                            android:gravity="center|center_vertical"
+                            android:src="@drawable/left_row" />
+
+                        <ImageButton
+                            android:id="@+id/next_to"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right|center"
+                            android:backgroundTint="@color/white"
+                            android:paddingRight="0dp"
+                            android:paddingLeft="0dp"
+                            android:gravity="center|center_vertical"
+                            android:src="@drawable/right_row"  />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/viewpager_date_to"
+                    android:layout_width="220dp"
+                    android:layout_height="220dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_marginTop="18dp" />
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/apply_change"
+            android:layout_width="150dp"
+            android:layout_height="36dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="28dp"
+            android:background="@drawable/mybutton"
+            android:text="Потвердить" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="100dp">
+
+        </View>
+    </LinearLayout>
+
+</ScrollView>

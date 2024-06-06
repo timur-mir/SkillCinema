@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "954141028872",
+    "project_id": "skillcinema-37678",
+    "storage_bucket": "skillcinema-37678.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:954141028872:android:734e0c3118c138250d57bd",
+        "android_client_info": {
+          "package_name": "ru.diplomnaya.skilllcinema"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "954141028872-khgj82hc9avqg8fl63rmo7onf406d6fd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQ79LNTCO4AwTIEeAI9Ys1tSZP-JnRZqs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "954141028872-khgj82hc9avqg8fl63rmo7onf406d6fd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

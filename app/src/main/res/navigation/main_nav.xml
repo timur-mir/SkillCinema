@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav"
+    app:startDestination="@id/movieListFragment2">
+    <fragment
+        android:id="@+id/movieListFragment2"
+        android:name="ru.diplomnaya.skilllcinema.view.MovieListFragment"
+        android:label="MovieListFragment">
+        <action
+            android:id="@+id/action_movieListFragment2_to_movieDetailFragment"
+            app:destination="@id/movieDetailFragment" />
+        <action
+            android:id="@+id/action_movieListFragment2_to_premieresFullListFragment"
+            app:destination="@id/premieresFullListFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/movieDetailFragment"
+        android:name="ru.diplomnaya.skilllcinema.presentation.detail.MovieDetailFragment"
+        android:label="MovieDetailFragment">
+
+        <argument
+            android:name="movieDetailInfo"
+            app:argType="ru.diplomnaya.skilllcinema.model.Movie" />
+        <action
+            android:id="@+id/action_movieDetailFragment_to_movieListFragment2"
+            app:destination="@id/movieListFragment2" />
+        <action
+            android:id="@+id/action_movieDetailFragment_to_myCollectionFragment"
+            app:destination="@id/myCollectionFragment" />
+        <action
+            android:id="@+id/action_movieDetailFragment_to_allActorsFragment"
+            app:destination="@id/allActorsFragment" />
+        <action
+            android:id="@+id/action_movieDetailFragment_to_imageFragment"
+            app:destination="@id/imageFragment" />
+        <action
+            android:id="@+id/action_movieDetailFragment_to_aboutActorFragment"
+            app:destination="@id/aboutActorFragment" />
+        <!--            app:launchSingleTop="true"/>-->
+        <!--&lt;!&ndash;            app:popUpTo="@+id/main_nav"&ndash;&gt;-->
+        <!--&lt;!&ndash;            app:popUpToInclusive="true"&ndash;&gt;-->
+
+
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/profileFragment2"
+        android:name="ru.diplomnaya.skilllcinema.presentation.profile.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment2_to_movieDetailFragment"
+            app:destination="@id/movieDetailFragment" />
+        <action
+            android:id="@+id/action_profileFragment2_to_myCollectionFragment"
+            app:destination="@id/myCollectionFragment" />
+        <action
+            android:id="@+id/action_profileFragment2_to_premieresFullListFragment"
+            app:destination="@id/premieresFullListFragment" />
+        <action
+            android:id="@+id/action_profileFragment2_to_aboutActorFragment"
+            app:destination="@id/aboutActorFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/searchFragment2"
+        android:name="ru.diplomnaya.skilllcinema.presentation.search.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" >
+        <!--        <argument-->
+        <!--            android:name="findFilms"-->
+        <!--            app:argType="ru.diplomnaya.skilllcinema.model.Movie[]" />-->
+        <action
+            android:id="@+id/action_searchFragment2_to_movieDetailFragment"
+            app:destination="@id/movieDetailFragment" />
+        <action
+            android:id="@+id/action_searchFragment2_to_settingsSearchMainFragment"
+            app:destination="@id/settingsSearchMainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/premieresFullListFragment"
+        android:name="ru.diplomnaya.skilllcinema.view.PremieresFullListFragment"
+        android:label="PremieresFullListFragment">
+        <argument
+            android:name="fullListPremieres"
+            app:argType="ru.diplomnaya.skilllcinema.model.Movie[]" />
+        <!--        <argument-->
+        <!--            android:name="fullListViewedHistory"-->
+        <!--            app:argType="ru.diplomnaya.skilllcinema.model.Movie[]" />-->
+        <action
+            android:id="@+id/action_premieresFullListFragment_to_movieDetailFragment"
+            app:destination="@id/movieDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/myCollectionFragment"
+        android:name="ru.diplomnaya.skilllcinema.presentation.myCollection.MyCollectionFragment"
+        android:label="MyCollectionFragment" >
+        <argument
+            android:name="collectionName"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_myCollectionFragment_to_settingsDialogFragment"
+            app:destination="@id/settingsDialogFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@+id/main_nav"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <dialog
+        android:id="@+id/settingsDialogFragment"
+        android:name="ru.diplomnaya.skilllcinema.presentation.detail.SettingsDialogFragment"
+
+        android:label="SettingsDialogFragment" >
+        <action
+            android:id="@+id/action_settingsDialogFragment_to_myCollectionFragment"
+            app:destination="@id/myCollectionFragment"
+            />
+        <argument
+            android:name="ForSettingsDialogFragment"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_settingsDialogFragment_to_movieDetailFragment"
+            app:destination="@id/movieDetailFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@+id/main_nav"
+            app:popUpToInclusive="true" />
+    </dialog>
+    <fragment
+        android:id="@+id/settingsSearchMainFragment"
+        android:name="ru.diplomnaya.skilllcinema.presentation.search.SettingsSearchMainFragment"
+        android:label="SettingsSearchMainFragment" >
+        <action
+            android:id="@+id/action_settingsSearchMainFragment_to_settingsGenreFragment"
+            app:destination="@id/settingsGenreFragment" />
+        <action
+            android:id="@+id/action_settingsSearchMainFragment_to_settingsCountryFragment"
+            app:destination="@id/settingsCountryFragment" />
+        <action
+            android:id="@+id/action_settingsSearchMainFragment_to_settingsYearsFragment"
+            app:destination="@id/settingsYearsFragment" />
+        <action
+            android:id="@+id/action_settingsSearchMainFragment_to_searchFragment2"
+            app:destination="@id/searchFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsGenreFragment"
+        android:name="ru.diplomnaya.skilllcinema.presentation.search.SettingsGenreFragment"
+        android:label="SettingsGenreFragment" />
+    <fragment
+        android:id="@+id/settingsCountryFragment"
+        android:name="ru.diplomnaya.skilllcinema.presentation.search.SettingsCountryFragment"
+        android:label="SettingsCountryFragment" />
+    <fragment
+        android:id="@+id/settingsYearsFragment"
+        android:name="ru.diplomnaya.skilllcinema.presentation.search.SettingsYearsFragment"
+        android:label="SettingsYearsFragment" />
+    <fragment
+        android:id="@+id/allActorsFragment"
+        android:name="ru.diplomnaya.skilllcinema.presentation.actors.AllActorsFragment"
+        android:label="AllActorsFragment" >
+        <argument android:name="actorsList"
+            app:argType="ru.diplomnaya.skilllcinema.model.entities.StaffStarred[]"/>
+        <action
+            android:id="@+id/action_allActorsFragment_to_aboutActorFragment"
+            app:destination="@id/aboutActorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/aboutActorFragment"
+        android:name="ru.diplomnaya.skilllcinema.presentation.actors.AboutActorFragment"
+        android:label="AboutActorFragment">
+        <argument android:name="actorsInfoForPage"
+            app:argType="ru.diplomnaya.skilllcinema.model.entities.StaffStarred"/>
+
+        <!--        <argument android:name="actorsInfoForPage2"-->
+        <!--            app:argType="ru.diplomnaya.skilllcinema.model.entities.StaffStarred"/>-->
+        <action
+            android:id="@+id/action_aboutActorFragment_to_actorFaceFragment"
+            app:destination="@id/actorFaceFragment" />
+        <action
+            android:id="@+id/action_aboutActorFragment_to_movieDetailFragment"
+            app:destination="@id/movieDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/actorFaceFragment"
+        android:name="ru.diplomnaya.skilllcinema.presentation.actors.ActorFaceFragment"
+        android:label="ActorFaceFragment">
+        <argument android:name="actorsPosterUrl"
+            app:argType="string"/>
+
+    </fragment>
+    <fragment
+        android:id="@+id/imageFragment"
+        android:name="ru.diplomnaya.skilllcinema.presentation.detail.ImageFragment"
+        android:label="ImageFragment" >
+        <argument
+            android:name="urlPic"
+            app:argType="string" />
+
+    </fragment>
+
+
+    <!--    <fragment-->
+    <!--        android:id="@+id/movieDetailFragment"-->
+    <!--        android:name="ru.diplomnaya.skilllcinema.presentation.detail.MovieDetailFragment"-->
+    <!--        android:label="MovieDetailFragment" />-->
+
+
+</navigation>

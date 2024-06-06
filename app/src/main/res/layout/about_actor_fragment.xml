@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/actor_level"
+    android:background="@drawable/gradient3"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <TextView
+        android:id="@+id/actor_name_page"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:hint="Имя актёра"
+        android:textColor="#023377"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginTop="54dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/actor_pic_page"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/actor_profession"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:hint="Имя в кино"
+        android:textColor="#023377"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@+id/actor_name_page"
+        app:layout_constraintTop_toBottomOf="@+id/actor_name_page" />
+
+    <ImageView
+        android:id="@+id/actor_pic_page"
+        android:layout_width="130dp"
+        android:layout_height="156dp"
+        android:layout_marginLeft="22dp"
+        android:layout_marginTop="42dp"
+        android:contentDescription="TODO"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:src="@drawable/gradient2" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/actor_first_level"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/actor_pic_page">
+
+        <TextView
+            android:id="@+id/best_film"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="22dp"
+            android:layout_marginTop="20dp"
+            android:text="Лучшее"
+            android:textColor="#023377"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/actor_first_level"
+            app:layout_constraintTop_toTopOf="@id/actor_first_level" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/actorBestListRecycler"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="22dp"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintTop_toBottomOf="@id/best_film"
+            app:layout_constraintStart_toStartOf="@id/actor_first_level"
+            tools:itemCount="5"
+            tools:listitem="@layout/move_list" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:id="@+id/actor_second_level"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/actor_first_level">
+
+    <LinearLayout
+        android:id="@+id/actor_filmography"
+        android:layout_width="210dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/filmography"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:text="Фильмография"
+            android:textColor="#023377"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/actor_film_amount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:text="кол фильмов"
+            android:textColor="#023377"
+            android:textSize="12dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/films_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/actor_first_level">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/open_films_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:text="К списку >"
+            android:textColor="#023377"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

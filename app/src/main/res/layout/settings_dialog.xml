@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/gradient3">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottomSheet"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/film_info"
+        android:layout_width="wrap_content"
+        android:layout_height="156dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/ratingAddFilm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="4dp"
+            android:background="#6176E6"
+            android:text="7.7"
+            android:textColor="@color/white"
+            android:textSize="10sp"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/titleAddFilm"
+            android:layout_width="111dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            android:text="Title"
+            android:textColor="#023377"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/posterAddFilm"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/genresAddFilm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:text="Genres"
+            android:textColor="#023377"
+            android:textSize="10sp"
+            app:layout_constraintStart_toStartOf="@+id/titleAddFilm"
+            app:layout_constraintTop_toBottomOf="@+id/titleAddFilm" />
+
+
+        <ImageView
+            android:id="@+id/posterAddFilm"
+            android:layout_width="130dp"
+            android:layout_height="156dp"
+            android:layout_marginTop="1dp"
+            android:contentDescription="TODO"
+            android:scaleType="centerCrop"
+            android:src="@drawable/location_current"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/gradient2"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageButton
+        android:id="@+id/cancelbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:background="@android:drawable/ic_menu_close_clear_cancel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <RelativeLayout
+        android:id="@+id/collectionLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="160dp"
+        android:orientation="vertical"
+        android:layout_alignParentTop="true"
+        app:layout_constraintBottom_toTopOf="@id/create_Collection"
+        app:layout_constraintTop_toTopOf="parent"
+        >
+
+        <LinearLayout
+            android:id="@+id/addInCollectionEl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="46dp"
+            android:orientation="horizontal"
+            >
+
+            <ImageView
+                android:id="@+id/addToCollection"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/add_to_collection" />
+
+            <TextView
+                android:id="@+id/addToCollectionView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Добавить в коллекцию"
+                android:textColor="#023377"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/want_see_InCollectionEl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="60dp"
+            android:layout_below="@+id/addInCollectionEl"
+            android:orientation="horizontal"
+          >
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/i_want_to_see"
+                android:layout_width="256dp"
+                android:layout_height="wrap_content"
+                android:text="Хочу посмотреть" />
+
+            <TextView
+                android:id="@+id/quantity_want_to_see"
+                android:layout_width="24dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:textColor="#023377"
+                android:text="#" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/favourite"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="60dp"
+            android:layout_below="@+id/want_see_InCollectionEl"
+            android:orientation="horizontal"
+          >
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/favourite_film"
+                android:layout_width="256dp"
+                android:layout_height="wrap_content"
+                android:text="Любимое" />
+
+            <TextView
+                android:id="@+id/quantity_favourite"
+                android:layout_width="24dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:textColor="#023377"
+                android:text="#" />
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/create_Collection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="30dp"
+        app:layout_constraintBottom_toBottomOf="@+id/bottomSheet"
+        app:layout_constraintEnd_toEndOf="@+id/bottomSheet"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/bottomSheet">
+
+
+        <ImageView
+            android:id="@+id/createNewCollection"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="46dp"
+            android:src="@drawable/plus"
+            app:layout_constraintBottom_toBottomOf="@+id/create_Collection"
+            app:layout_constraintStart_toStartOf="@+id/create_Collection"
+            app:layout_constraintTop_toTopOf="@+id/create_Collection"
+            app:layout_constraintVertical_bias="0.8" />
+
+        <TextView
+            android:id="@+id/createNewCollectionView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Создать свою коллекцию"
+            android:textColor="#023377"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/create_Collection"
+            app:layout_constraintEnd_toEndOf="@+id/create_Collection"
+            app:layout_constraintStart_toEndOf="@+id/createNewCollection"
+            app:layout_constraintTop_toTopOf="@+id/create_Collection"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>

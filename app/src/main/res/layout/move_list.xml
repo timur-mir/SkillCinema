@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_view_movie"
+    android:layout_width="130dp"
+    android:layout_height="220dp"
+    app:cardCornerRadius="12dp"
+    app:strokeColor="#770C30"
+    app:strokeWidth="2dp">
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="130dp"
+    android:layout_height="220dp"
+    android:background="@drawable/gradient4">
+
+    <View
+        android:id="@+id/gradient_view_premieres"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/gradient2"
+        android:visibility="invisible"
+        />
+    <TextView
+        android:id="@+id/ratingLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
+        android:textSize="8sp"
+        android:background="#6176E6"
+        android:textColor="@color/white"
+        android:text="7.7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:paddingLeft="2dp"
+        android:text="Title"
+        android:textSize="12sp"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/poster_pic"
+        app:layout_constraintTop_toBottomOf="@+id/poster_pic"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+      android:id="@+id/genres"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:paddingLeft="2dp"
+        android:paddingBottom="2dp"
+        android:text="Genres"
+        android:textSize="10sp"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="@+id/title"
+        app:layout_constraintTop_toBottomOf="@+id/title" />
+
+
+    <ImageView
+        android:id="@+id/poster_pic"
+        android:layout_width="130dp"
+        android:layout_height="156dp"
+        android:layout_marginTop="1dp"
+        android:contentDescription="TODO"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/gradient2" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

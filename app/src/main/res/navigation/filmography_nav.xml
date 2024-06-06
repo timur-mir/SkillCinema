@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/filmography_nav"
+    app:startDestination="@id/actorFilmographyMainFragment">
+
+    <fragment
+        android:id="@+id/actorFilmographyMainFragment"
+        android:name="ru.diplomnaya.skilllcinema.presentation.filmography.ActorFilmographyMainFragment"
+        android:label="ActorFilmographyMainFragment" />
+    <fragment
+        android:id="@+id/actorFilmographyFragment"
+        android:name="ru.diplomnaya.skilllcinema.presentation.filmography.ActorFilmographyFragment"
+        android:label="ActorFilmographyFragment" />
+    <fragment
+        android:id="@+id/movieDetailFragment2"
+        android:name="ru.diplomnaya.skilllcinema.presentation.detail.MovieDetailFragment"
+        android:label="MovieDetailFragment"/>
+    <argument
+        android:name="movieDetailInfo"
+        app:argType="ru.diplomnaya.skilllcinema.model.Movie" />
+</navigation>

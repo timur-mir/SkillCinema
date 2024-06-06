@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Skillcinema</string>
+    <string name="find_out_about_the_premieres">Узнавай о премьерах</string>
+    <string name="create_collections">Создавай коллекции</string>
+    <string name="share_with_your_friends">Делись с друзьями</string>
+    <string name="miss">Пропустить</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="clear_history_viewed_films">Очистить историю</string>
+    <string name="clear_films">Clear films</string>
+    <string name="customization_search">Настройка поиска</string>
+    <string name="show_films_or_serials_or_all">Показывать</string>
+    <string name="show_all">Всё</string>
+    <string name="show_films">Фильмы</string>
+    <string name="show_serials">Сериалы</string>
+    <string name="country">Страна</string>
+    <string name="rating">Рейтинг</string>
+    <string name="any_rating">любой</string>
+    <string name="overlooked">Непросмотрен</string>
+    <string name="genre">Жанр</string>
+    <string name="country_search">Страна</string>
+    <string name="_10">10</string>
+    <string name="_1">1</string>
+    <string name="select">Выбрать</string>
+    <string name="about_programm">Skillcinema это  поисковик фильмов  на сайте - https://kinopoiskapiunofficial.tech, позволяющий отображать контент по фильму, хранить данные фильма, делиться информацией о фильме по сети, просматривать содержание фильма по сети, вести базу фильмов по категориям…  Разработчик программы Мирзаджанов Тимур</string>
+</resources>

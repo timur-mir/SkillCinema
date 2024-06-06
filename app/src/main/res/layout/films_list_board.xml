@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="utf-8"?><!--<layout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    xmlns:tools="http://schemas.android.com/tools">-->
+
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/fon_tekstura">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="ru.diplomnaya.skilllcinema.presentation.main.PremieresListViewModel" />
+
+        <import type="android.view.View" />
+
+        <!--        <variable-->
+        <!--            name="viewModelAnyFilms"-->
+        <!--            type="skilllcinemaa.viewmodel.AnyCountriesAndGenresFilmsViewModel" />-->
+
+        <!--        <variable-->
+        <!--            name="mainFragment"-->
+        <!--            type="skilllcinemaa.view.MovieListFragmentt" />-->
+
+        <!--        <import type="android.view.View" />-->
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/mainHeaderFilmLists"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginTop="40dp"
+                    android:fontFamily="@font/caveat_variablefont_wght"
+                    android:text="Skillcinema 2024"
+                    android:textColor="#F86707"
+                    android:textSize="44sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/first_level"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/mainHeaderFilmLists">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/premiereHeader"
+                        android:layout_width="170dp"
+                        android:layout_height="37dp"
+                        android:layout_marginLeft="22dp"
+                        android:layout_marginTop="42dp"
+                        android:fontFamily="@font/caveat_variablefont_wght"
+                        android:text="Премьеры"
+                        android:textColor="#F86707"
+                        android:textSize="38sp"
+                        app:layout_constraintStart_toStartOf="@id/first_level"
+                        app:layout_constraintTop_toTopOf="@id/first_level" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/premieresAll"
+                        android:layout_width="50dp"
+                        android:layout_height="30dp"
+                        android:layout_marginTop="48dp"
+                        android:layout_marginRight="22dp"
+                        android:background="#00FFFFFF"
+                        android:gravity="right|center_vertical"
+                        android:text="Все"
+                        android:textColor="#F86707"
+                        android:visibility="invisible"
+                        app:layout_constraintEnd_toEndOf="@id/first_level"
+                        app:layout_constraintTop_toTopOf="@id/first_level" />
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/moviesListRecycler"
+                            android:layout_width="match_parent"
+                            android:layout_height="226dp"
+                            android:layout_marginLeft="22dp"
+                            android:layout_marginTop="10dp"
+                            android:orientation="horizontal"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            app:layout_constraintTop_toBottomOf="@id/premiereHeader"
+                            tools:itemCount="5"
+                            tools:listitem="@layout/move_list" />
+
+                    <androidx.appcompat.widget.AppCompatImageButton
+                        android:id="@+id/switchFonMus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="28dp"
+                        android:background="#00555555"
+                        android:src="@drawable/volume_down"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/second_level"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/first_level">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/topAwaitHeader"
+                        android:layout_width="170dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="22dp"
+                        android:layout_marginTop="22dp"
+                        android:fontFamily="@font/caveat_variablefont_wght"
+                        android:text="Популярное"
+                        android:textColor="#F86707"
+                        android:textSize="38sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/second_level" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/topAwaitAll"
+                        android:layout_width="50dp"
+                        android:layout_height="30dp"
+                        android:layout_marginTop="40dp"
+                        android:layout_marginRight="22dp"
+                        android:background="#00FFFFFF"
+                        android:gravity="right|center_vertical"
+                        android:text="Все"
+                        android:textColor="#F86707"
+                        android:visibility="invisible"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/second_level" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/topAwaitListRecycler"
+                        android:layout_width="match_parent"
+                        android:layout_height="226dp"
+                        android:layout_marginLeft="22dp"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintTop_toBottomOf="@+id/topAwaitHeader"
+                        tools:itemCount="5"
+                        tools:listitem="@layout/move_list" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/third_level"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    app:layout_constraintTop_toBottomOf="@id/second_level">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/randomGenreTitle"
+                        android:layout_width="280dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="22dp"
+                        android:layout_marginTop="22dp"
+                        android:fontFamily="@font/caveat_variablefont_wght"
+                        android:text="Жанр Страна"
+                        android:textColor="#F86707"
+                        android:textSize="38sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/third_level" />
+                    <!--                android:text="@{viewModelAnyFilms.randomFilmsWithRandomGenres}"-->
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/topAnyFilmsAll"
+                        android:layout_width="50dp"
+                        android:layout_height="30dp"
+                        android:layout_marginTop="40dp"
+                        android:layout_marginRight="22dp"
+                        android:background="#00FFFFFF"
+                        android:gravity="right|center_vertical"
+                        android:text="Все"
+                        android:textColor="#F86707"
+                        android:visibility="invisible"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/third_level" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/topAnyFilmsListRecycler"
+                        android:layout_width="match_parent"
+                        android:layout_height="226dp"
+                        android:layout_marginLeft="22dp"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintTop_toBottomOf="@+id/randomGenreTitle"
+                        tools:itemCount="5"
+                        tools:listitem="@layout/move_list" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/fours_level"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/third_level">
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/top250Header"
+                        android:layout_width="170dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="22dp"
+                        android:layout_marginTop="22dp"
+                        android:fontFamily="@font/caveat_variablefont_wght"
+                        android:text="Топ-250"
+                        android:textColor="#F86707"
+                        android:textSize="38sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/fours_level" />
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/top250All"
+                        android:layout_width="50dp"
+                        android:layout_height="30dp"
+                        android:layout_marginTop="40dp"
+                        android:layout_marginRight="22dp"
+                        android:background="#00FFFFFF"
+                        android:gravity="right|center_vertical"
+                        android:text="Все"
+                        android:textColor="#F86707"
+                        android:visibility="invisible"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/fours_level" />
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/top250ListRecycler"
+                        android:layout_width="match_parent"
+                        android:layout_height="226dp"
+                        android:layout_marginLeft="22dp"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintTop_toBottomOf="@+id/top250Header"
+                        tools:itemCount="5"
+                        tools:listitem="@layout/move_list" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/fifth_level"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/fours_level">
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/randomGenreTitleSecondVariant"
+                        android:layout_width="280dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="22dp"
+                        android:layout_marginTop="22dp"
+                        android:fontFamily="@font/caveat_variablefont_wght"
+                        android:text="Жанр Страна"
+                        android:textColor="#F86707"
+                        android:textSize="38sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/fifth_level" />
+                    <!--                android:text="@{viewModelAnyFilms.randomFilmsWithRandomGenres}"-->
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/topAnyFilmsAllSecondVariant"
+                        android:layout_width="50dp"
+                        android:layout_height="30dp"
+                        android:layout_marginTop="40dp"
+                        android:layout_marginRight="22dp"
+                        android:background="#00FFFFFF"
+                        android:gravity="right|center_vertical"
+                        android:text="Все"
+                        android:textColor="#F86707"
+                        android:visibility="invisible"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/fifth_level" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/topAnyFilmsListRecyclerSecondVariant"
+                        android:layout_width="match_parent"
+                        android:layout_height="226dp"
+                        android:layout_marginLeft="22dp"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintTop_toBottomOf="@+id/randomGenreTitleSecondVariant"
+                        tools:itemCount="5"
+                        tools:listitem="@layout/move_list" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/sixth_level"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/fifth_level">
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/anyCountriesAndGenresTV_SERIES"
+                        android:layout_width="170dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="22dp"
+                        android:layout_marginTop="22dp"
+                        android:fontFamily="@font/caveat_variablefont_wght"
+                        android:text="Сериалы"
+                        android:textColor="#F86707"
+                        android:textSize="38sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/sixth_level" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/TV_SERIES_All"
+                        android:layout_width="50dp"
+                        android:layout_height="30dp"
+                        android:layout_marginTop="40dp"
+                        android:layout_marginRight="22dp"
+                        android:background="#00FFFFFF"
+                        android:gravity="right|center_vertical"
+                        android:text="Все"
+                        android:textColor="#F86707"
+                        android:visibility="invisible"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/sixth_level" />
+
+                    <androidx.appcompat.widget.AppCompatImageButton
+                        android:id="@+id/refreshSeries"
+                        android:layout_width="38dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="22dp"
+                        android:background="#00555555"
+                        android:src="@drawable/refresh"
+                        app:layout_constraintBottom_toTopOf="@+id/anyCountriesAndGenres_TV_SERIES_Recycler"
+                        app:layout_constraintEnd_toStartOf="@+id/TV_SERIES_All"
+                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintStart_toEndOf="@+id/anyCountriesAndGenresTV_SERIES"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.23" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/anyCountriesAndGenres_TV_SERIES_Recycler"
+                        android:layout_width="match_parent"
+                        android:layout_height="226dp"
+                        android:layout_marginLeft="22dp"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintTop_toBottomOf="@+id/anyCountriesAndGenresTV_SERIES"
+                        tools:itemCount="5"
+                        tools:listitem="@layout/tv_series_list" />
+                    <View
+                        android:id="@+id/empty_space"
+                        android:layout_width="match_parent"
+                        android:layout_height="140dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/anyCountriesAndGenres_TV_SERIES_Recycler"
+                        android:visibility="invisible"
+                        />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <FrameLayout
+                    android:id="@+id/progress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#33000000"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/first_level">
+
+                    <ProgressBar
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@color/white"
+                        android:visibility="@{viewModel.isLoading() ? View.VISIBLE:View.GONE}" />
+                </FrameLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/head"
+    android:layout_width="130dp"
+    android:layout_height="156dp"
+    android:orientation="vertical"
+    android:gravity="center|center_vertical">
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/clear_interested_object"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/trash"
+        android:contentDescription="@string/clear_films" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/info_string_interested_object"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="Очистить историю"
+        android:textColor="#fff"  />
+</LinearLayout>

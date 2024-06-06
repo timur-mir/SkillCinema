@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="360dp"
+    android:layout_height="300dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view"
+    android:layout_gravity="center"
+    app:cardBackgroundColor="#A1D49A43"
+      app:strokeColor="#E23C08"
+    app:strokeWidth="2dp">
+<!--    app:cardBackgroundColor="#80FF5722"-->
+
+        <ImageButton
+            android:id="@+id/cancelbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="24dp"
+            android:background="@android:drawable/ic_menu_close_clear_cancel"
+           />
+
+        <EditText
+            android:id="@+id/name_collection"
+            android:layout_width="250dp"
+            android:layout_height="56dp"
+            android:layout_marginTop="80dp"
+            android:layout_marginStart="40dp"
+            android:padding="6dp"
+            android:hint="Придумайте название для вашей коллекции"
+            android:textColorHint="#3B1977"
+            android:textColor="#F5F6F8"
+            android:textSize="18sp"
+      />
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/save_collection"
+        android:layout_width="80dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="180dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/mybutton2"
+        android:text="Готово"
+        android:textColor="@color/white" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginStart="170dp"
+        android:layout_marginTop="190dp"
+        android:layout_marginEnd="50dp"
+        />
+
+    </com.google.android.material.card.MaterialCardView>
+
