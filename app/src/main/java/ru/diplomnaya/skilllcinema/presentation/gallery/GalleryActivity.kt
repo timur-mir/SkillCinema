@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.os.Handler
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.res.ResourcesCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
@@ -11,6 +12,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
+import ru.diplomnaya.skilllcinema.R
 import ru.diplomnaya.skilllcinema.databinding.GalleryActivityBinding
 import ru.diplomnaya.skilllcinema.model.entities.ItemsImages
 import ru.diplomnaya.skilllcinema.presentation.detail.ImagesViewModel
@@ -24,6 +26,9 @@ class GalleryActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _binding = GalleryActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        val bar = supportActionBar
+        val gradient = ResourcesCompat.getDrawable(resources, R.drawable.gradient7, null)
+        bar!!.setBackgroundDrawable(gradient)
         idFilmOrSerial = intent?.extras?.getInt("filmOrSerialId")
     }
     override fun onDestroy() {

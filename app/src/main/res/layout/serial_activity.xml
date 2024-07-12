@@ -4,7 +4,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient3">
+    android:background="@drawable/fon_tekstura">
     <TextView
         android:id="@+id/serial_name_text_view"
         android:text="Сериал"
@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="40dp"
-        android:textColor="#023377"
+        android:textColor="@color/frame_color"
         android:textSize="20dp"/>
     <LinearLayout
         android:layout_width="wrap_content"
@@ -25,16 +25,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:textColor="#023377"
+            android:textColor="@color/frame_color"
             android:textSize="20dp"/>
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab_layout_seasons"
         app:tabMode="scrollable"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         app:tabPaddingStart="20dp"
-        app:tabTextColor="@color/white"
- 
+        android:background="@drawable/fon_tekstura"
      />
     </LinearLayout>
     <androidx.viewpager2.widget.ViewPager2

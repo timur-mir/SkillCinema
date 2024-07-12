@@ -1,5 +1,6 @@
 package ru.diplomnaya.skilllcinema.presentation.intro
 
+
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
@@ -9,15 +10,13 @@ import android.net.ConnectivityManager
 import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.core.content.res.ResourcesCompat
 import androidx.datastore.preferences.core.edit
 import androidx.lifecycle.lifecycleScope
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayoutMediator
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
@@ -26,8 +25,6 @@ import ru.diplomnaya.skilllcinema.R
 import ru.diplomnaya.skilllcinema.databinding.ActivityIntroBinding
 import ru.diplomnaya.skilllcinema.presentation.PreferenceKeys
 import ru.diplomnaya.skilllcinema.presentation.intro.IntroActivity.State.netState
-
-
 import ru.diplomnaya.skilllcinema.presentation.main.MainActivity
 
 class IntroActivity : AppCompatActivity() {
@@ -104,6 +101,9 @@ class IntroActivity : AppCompatActivity() {
         }
         _binding = ActivityIntroBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        val bar = supportActionBar
+        val gradient = ResourcesCompat.getDrawable(resources, R.drawable.gradient7, null)
+        bar!!.setBackgroundDrawable(gradient)
 
         val adapter = CompositionAdapter(screens, this)
         val vp = binding.viewpager

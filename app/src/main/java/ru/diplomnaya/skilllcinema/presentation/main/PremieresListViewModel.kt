@@ -61,8 +61,11 @@ class PremieresListViewModel private constructor(
                 onSuccess = { it ->
                   ///   _movies.value = it.filter { movie -> movie.countries?.any { it.country == "Россия" }?:false}
                     _movies.value = it
+                    Log.d("TAG2","${it}")
                 },
-                onFailure = { Log.d("PremieresListViewModel", it.message ?: "") }
+                onFailure = { Log.d("PremieresListViewModel", it.message ?: "")
+                    _movies.value= repository.getPremieresAtDao()
+                }
             )
             _isLoading.value = false
          downloader?.cancel()

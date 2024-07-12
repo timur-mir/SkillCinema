@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="1200dp"
+    android:layout_height="1320dp"
     android:background="@drawable/fon_tekstura">
 
 
@@ -22,7 +22,7 @@
             android:layout_marginTop="42dp"
             android:text="Просмотренно"
             android:fontFamily="@font/caveat_variablefont_wght"
-            android:textColor="#F86707"
+            android:textColor="@color/frame_color"
             android:textSize="26sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
@@ -37,7 +37,7 @@
             android:gravity="right|center_vertical"
             android:fontFamily="@font/caveat_variablefont_wght"
             android:text=""
-            android:textColor="#F86707"
+            android:textColor="@color/frame_color"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -45,17 +45,17 @@
             android:id="@+id/lookedCollectionArea"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/viewedAll">
+            app:layout_constraintTop_toBottomOf="@id/viewedHeader">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/movies_viewed_list"
                 android:layout_width="match_parent"
-                android:layout_height="220dp"
+                android:layout_height="226dp"
                 android:layout_marginLeft="22dp"
-                android:layout_marginTop="10dp"
                 android:layout_gravity="center_vertical"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -78,6 +78,7 @@
             android:id="@+id/first_level_col"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/lookedCollectionArea">
 
@@ -101,7 +102,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="14dp"
                     android:fontFamily="@font/caveat_variablefont_wght"
-                    android:textColor="#F86707"
+                    android:textColor="@color/frame_color"
                     android:textSize="22sp"
                     android:text="Создать свою коллекцию"/>
 
@@ -148,7 +149,7 @@
                 android:layout_marginLeft="22dp"
                 android:text="Вам было интересно"
                 android:fontFamily="@font/caveat_variablefont_wght"
-                android:textColor="#F86707"
+                android:textColor="@color/frame_color"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
@@ -160,7 +161,7 @@
                 android:layout_height="30dp"
                 android:layout_marginRight="22dp"
                 android:fontFamily="@font/caveat_variablefont_wght"
-                android:textColor="#F86707"
+                android:textColor="@color/frame_color"
                 android:textSize="16sp"
                 android:gravity="right|center_vertical"
                 android:text=""
@@ -181,7 +182,7 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/interesting_films"
                     android:layout_width="match_parent"
-                    android:layout_height="220dp"
+                    android:layout_height="226dp"
                     android:layout_marginLeft="22dp"
                     android:layout_marginTop="10dp"
                     android:orientation="horizontal"
@@ -206,6 +207,14 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-
+        <View
+            android:id="@+id/gradient_view"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            app:layout_constraintTop_toBottomOf="@id/second_level_col"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </ScrollView>

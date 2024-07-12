@@ -5,6 +5,7 @@ import static androidx.biometric.BiometricManager.Authenticators.DEVICE_CREDENTI
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -13,10 +14,12 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.biometric.BiometricManager;
 import androidx.biometric.BiometricPrompt;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.res.ResourcesCompat;
 
 import java.util.concurrent.Executor;
 
@@ -35,6 +38,9 @@ public class AuthenticationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.authentication_activity);
+        ActionBar bar = getSupportActionBar();
+        Drawable gradient = ResourcesCompat. getDrawable( getResources(),R.drawable.gradient7,null);
+        bar.setBackgroundDrawable(gradient);
         imageview = findViewById(R.id.imageview);
         BiometricManager biometricManager = BiometricManager.from(this);
 

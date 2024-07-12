@@ -19,10 +19,10 @@ interface PremieresDao  {
     @Insert(onConflict= OnConflictStrategy.REPLACE)
     suspend fun insertPremiere(film:PremieresEntity)
 
+//    @Query("SELECT*FROM premieres ")
+//    fun getPremieres(): Flow<List<PremieresEntity>>
     @Query("SELECT*FROM premieres ")
-    fun getPremieres(): Flow<List<PremieresEntity>>
-
-
+    fun getPremieres():List<PremieresEntity>
     @Query("SELECT*FROM premieres  WHERE kinopoiskId=:kinopoiskId")
     fun getPremiereById(kinopoiskId:Int): Flow<PremieresEntity>
 

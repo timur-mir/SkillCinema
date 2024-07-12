@@ -4,6 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.res.ResourcesCompat
+import ru.diplomnaya.skilllcinema.R
 import ru.diplomnaya.skilllcinema.databinding.LoadingActivityBinding
 import ru.diplomnaya.skilllcinema.presentation.main.MainActivity
 
@@ -14,6 +16,9 @@ class LoadingActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _binding = LoadingActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        val bar = supportActionBar
+        val gradient = ResourcesCompat.getDrawable(resources, R.drawable.gradient7, null)
+        bar!!.setBackgroundDrawable(gradient)
 
         Handler().postDelayed(
             {
@@ -24,7 +29,7 @@ class LoadingActivity : AppCompatActivity() {
                 finish()
             },
 
-            1000
+            500
 
         )
     }

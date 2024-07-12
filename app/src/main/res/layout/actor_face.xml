@@ -12,7 +12,7 @@
         android:layout_height="30dp"
         android:text="Фото актёра"
         android:fontFamily="@font/caveat_variablefont_wght"
-        android:textColor="#F86707"
+        android:textColor="@color/frame_color"
         android:textSize="26sp"
         android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"

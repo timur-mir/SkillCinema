@@ -31,7 +31,15 @@ class WorkedOnFilmAdapter(private val onClick: (StaffStarred) -> Unit) :
         val item = getItem(position)
 
         with(holder.binding) {
-            staffNameInFilm.text = item?.nameRu ?: item?.nameEn
+//            staffNameInFilm.text = item?.nameRu ?: item?.nameEn
+            if (item != null) {
+                staffNameInFilm.text =  item.nameRu
+            }
+            if(item != null&&item.nameRu==null){
+                if (item.nameEn!=null){
+                    staffNameInFilm.text =  item.nameEn
+                }
+            }
             professionKeyInFilm.text = item?.professionKey
             item.let {
                 Picasso

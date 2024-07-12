@@ -2,6 +2,8 @@ package ru.diplomnaya.skilllcinema.presentation.filmography
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.res.ResourcesCompat
+import ru.diplomnaya.skilllcinema.R
 import ru.diplomnaya.skilllcinema.databinding.FilmographyActivityBinding
 import ru.diplomnaya.skilllcinema.model.entities.StaffStarred
 import ru.diplomnaya.skilllcinema.presentation.filmography.ActorFilmographyActivity.HelpFilmographyActor.staredPersonObject
@@ -14,6 +16,9 @@ class ActorFilmographyActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _binding = FilmographyActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        val bar = supportActionBar
+        val gradient = ResourcesCompat.getDrawable(resources, R.drawable.gradient7, null)
+        bar!!.setBackgroundDrawable(gradient)
         staredPersonObject = intent?.extras?.getParcelable<StaffStarred>("person")!!
     }
     override fun onDestroy() {

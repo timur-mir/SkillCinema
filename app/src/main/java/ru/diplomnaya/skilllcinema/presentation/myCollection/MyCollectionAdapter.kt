@@ -34,7 +34,6 @@ class MyCollectionAdapter (private val onClick: (CollectionFilm) -> Unit):
                 Picasso
                     .with(posterCF.context)
                     .load(it.posterUrlPreview)
-                    .placeholder(R.drawable.location_current)
                     .into(posterCF)
 
             }

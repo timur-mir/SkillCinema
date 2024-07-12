@@ -198,8 +198,9 @@ class SettingsDialogFragment : BottomSheetDialogFragment() {
                 binding.titleAddFilm.text = it.nameRu
                 binding.genresAddFilm.text = it.genres?.get(0)?.genre.toString()
                 Picasso.with(binding.posterAddFilm.context).load(it.posterUrlPreview)
-                    .placeholder(R.drawable.location_current).into(binding.posterAddFilm)
+
             }.launchIn(this)
+//                .placeholder(R.drawable.location_current).into(binding.posterAddFilm)
         }
         // Создание коллекции  в "диалоговом режиме"
         binding.createNewCollection.setOnClickListener {
@@ -221,11 +222,8 @@ class SettingsDialogFragment : BottomSheetDialogFragment() {
                     )
                 )
                 dialogSettings.dismiss()
-                val action =
-                        SettingsDialogFragmentDirections.actionSettingsDialogFragmentToMyCollectionFragment(
-                            textFieldCollection.text.toString()
-                        )
-                    findNavController().navigate(action)
+                val action =SettingsDialogFragmentDirections.actionSettingsDialogFragmentToMyCollectionFragment( textFieldCollection.text.toString())
+                findNavController().navigate(action)
 
         }
 

@@ -3,6 +3,7 @@ package ru.diplomnaya.skilllcinema.presentation.main
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.core.content.res.ResourcesCompat
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
@@ -31,22 +32,27 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-                 defaultSettingsForFilmsSearch()
+        val bar = supportActionBar
+        val gradient = ResourcesCompat.getDrawable(resources, R.drawable.gradient7, null)
+        bar!!.setBackgroundDrawable(gradient)
+        defaultSettingsForFilmsSearch()
         val bottomNavigationView = binding.panelNavigationMain
         val navController = findNavController(R.id.fragmentContainer)
 
 
         bottomNavigationView.setupWithNavController(navController)
-        bottomNavigationView.setOnNavigationItemSelectedListener{
-            when(it.itemId) {
-                R.id.movieListFragment2-> {
+        bottomNavigationView.setOnNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.movieListFragment2 -> {
                     navController.navigate(R.id.movieListFragment2)
 
                 }
-                R.id.searchFragment2-> {
+
+                R.id.searchFragment2 -> {
                     navController.navigate(R.id.searchFragment2)
                 }
-                R.id.profileFragment2-> {
+
+                R.id.profileFragment2 -> {
                     navController.navigate(R.id.profileFragment2)
                 }
 
@@ -56,25 +62,26 @@ class MainActivity : AppCompatActivity() {
 
 
     }
+
     override fun onDestroy() {
         super.onDestroy()
-      //  _binding=null
+        //  _binding=null
     }
 
     private fun defaultSettingsForFilmsSearch() {
 
-            lifecycle.coroutineScope.launch {
-                applicationDatastore.edit { preferences ->
-                    preferences[PreferenceKeys.COUNTRY_NAME] ="Россия"
-                    preferences[PreferenceKeys.GENRE_TITLE] ="Комедия"
-                    preferences[PreferenceKeys.RATING_FROM] =8
-                    preferences[PreferenceKeys.RATING_TO] =10
-                    preferences[PreferenceKeys.FILM_TYPE] = "FILM"
-                    preferences[PreferenceKeys.SORT_BY] = "YEAR"
-                    preferences[PreferenceKeys.YEAR_TO] =2020
-                    preferences[PreferenceKeys.YEAR_FROM] =1998
+        lifecycle.coroutineScope.launch {
+            applicationDatastore.edit { preferences ->
+                preferences[PreferenceKeys.COUNTRY_NAME] = "Россия"
+                preferences[PreferenceKeys.GENRE_TITLE] = "Комедия"
+                preferences[PreferenceKeys.RATING_FROM] = 8
+                preferences[PreferenceKeys.RATING_TO] = 10
+                preferences[PreferenceKeys.FILM_TYPE] = "FILM"
+                preferences[PreferenceKeys.SORT_BY] = "YEAR"
+                preferences[PreferenceKeys.YEAR_TO] = 2020
+                preferences[PreferenceKeys.YEAR_FROM] = 1998
 
-                }
             }
         }
+    }
 }

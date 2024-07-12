@@ -4,9 +4,11 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.res.ResourcesCompat
 import androidx.lifecycle.coroutineScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.coroutines.launch
+import ru.diplomnaya.skilllcinema.R
 import ru.diplomnaya.skilllcinema.databinding.MyCollectionActivityBinding
 import ru.diplomnaya.skilllcinema.model.database.CollectionFilm
 import ru.diplomnaya.skilllcinema.presentation.myCollection.CollectionsViewModel
@@ -23,6 +25,9 @@ class MyCollectionActivity : AppCompatActivity() {
 
         _binding = MyCollectionActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        val bar = supportActionBar
+        val gradient = ResourcesCompat.getDrawable(resources, R.drawable.gradient7, null)
+        bar!!.setBackgroundDrawable(gradient)
 
         val responseStringInIntent: Intent = intent
         val messageTextOut = responseStringInIntent.getStringExtra("message")
@@ -48,7 +53,7 @@ class MyCollectionActivity : AppCompatActivity() {
                 val listSize = list.size
                 var n = 0
                 for (single in list) {
-                    n = n + 1
+                    n += 1
                     if (single.collections.CollectionName == messageTextOut) {
                         single.itemCollectionsList.forEach {
                             if (it.parentCollectionID == single.collections.collectionID) {

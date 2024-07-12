@@ -11,11 +11,13 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.coroutines.launch
 import ru.diplomnaya.skilllcinema.R
 import ru.diplomnaya.skilllcinema.databinding.MyCollectionFragmentBinding
 import ru.diplomnaya.skilllcinema.model.database.CollectionFilm
+import ru.diplomnaya.skilllcinema.utilits.ItemOffsetDecoration
 
 
 class MyCollectionFragment : Fragment() {
@@ -50,7 +52,12 @@ class MyCollectionFragment : Fragment() {
             requireContext(),
             LinearLayoutManager.VERTICAL, false
         )
-        binding.myCollectionRecycler.layoutManager = layoutManger
+        val layoutManger2=GridLayoutManager(requireContext(), 2).apply {
+            GridLayoutManager.VERTICAL
+        }
+        binding.myCollectionRecycler.setHasFixedSize(true)
+        binding.myCollectionRecycler.layoutManager = layoutManger2
+        binding.myCollectionRecycler.addItemDecoration(ItemOffsetDecoration(requireContext()))
 
         val listCollection = mutableListOf<CollectionFilm>()
 

@@ -14,7 +14,7 @@
         android:layout_marginLeft="22dp"
         android:layout_marginTop="40dp"
         android:fontFamily="@font/caveat_variablefont_wght"
-        android:textColor="#A0359F"
+        android:textColor="@color/frame_color"
         android:textSize="44sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>

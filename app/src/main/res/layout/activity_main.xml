@@ -24,7 +24,7 @@
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/panel_navigation_main"
-        android:background="#0062B1"
+        android:background="@drawable/gradient7"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_gravity="bottom"

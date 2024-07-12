@@ -23,4 +23,5 @@
     <string name="_1">1</string>
     <string name="select">Выбрать</string>
     <string name="about_programm">Skillcinema это  поисковик фильмов  на сайте - https://kinopoiskapiunofficial.tech, позволяющий отображать контент по фильму, хранить данные фильма, делиться информацией о фильме по сети, просматривать содержание фильма по сети, вести базу фильмов по категориям…  Разработчик программы Мирзаджанов Тимур</string>
+    <string name="amount_series">Количество серий</string>
 </resources>

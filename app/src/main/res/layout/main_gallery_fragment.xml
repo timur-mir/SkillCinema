@@ -15,7 +15,7 @@
         android:layout_marginTop="40dp"
         android:text="Галерея"
         android:fontFamily="@font/caveat_variablefont_wght"
-        android:textColor="#A0359F"
+        android:textColor="@color/frame_color"
         android:textSize="44sp"/>
 
     <LinearLayout

@@ -6,6 +6,8 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.res.ResourcesCompat
+import ru.diplomnaya.skilllcinema.R
 import ru.diplomnaya.skilllcinema.databinding.GlobalActivityBinding
 
 
@@ -16,6 +18,9 @@ class GlobalActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _binding = GlobalActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        val bar = supportActionBar
+        val gradient = ResourcesCompat.getDrawable(resources, R.drawable.gradient7, null)
+        bar!!.setBackgroundDrawable(gradient)
         val urlFilm = intent?.extras?.getString("filmUrlOnGlobal")
         binding.webView.getSettings().setJavaScriptEnabled(true)
         binding.webView.loadUrl("$urlFilm")

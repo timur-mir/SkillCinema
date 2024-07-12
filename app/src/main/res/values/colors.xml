@@ -4,9 +4,10 @@
     <color name="white">#FFFFFFFF</color>
     <color name="grey_default">#aaaaaa</color>
     <color name="active_page">#0867B2</color>
-    <color name="frame_color">#FF9800</color>
-    <color name="colorPrimary">#020B42</color>
+    <color name="frame_color">#E9D1ED</color>
+    <color name="colorPrimary">#3C4477</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#B2D81B60</color>
     <color name="colorPrimaryOld">#008577</color>
 </resources>
+<!--<color name="frame_color">#FF9800</color>-->

@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.Skillcinema" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimaryDark">#A42903</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 

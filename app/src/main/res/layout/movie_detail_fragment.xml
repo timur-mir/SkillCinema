@@ -9,13 +9,13 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="1700dp">
+        android:layout_height="wrap_content">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/head_level"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:background="@drawable/gradient4"
+            android:layout_height="wrap_content"
+            android:background="@drawable/gradient"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -24,6 +24,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="180dp"
                 android:layout_marginTop="12dp"
+                app:circularflow_defaultRadius="@dimen/cardview_default_radius"
                 app:layout_constraintBottom_toTopOf="@+id/baseInfo"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -58,9 +59,9 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:fontFamily="@font/caveat_variablefont_wght"
-                        android:textColor="#F86707"
+                        android:textColor="@color/frame_color"
                         android:text="Заголовок "
-                        android:textSize="36sp" />
+                        android:textSize="30sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -75,7 +76,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/caveat_variablefont_wght"
                         android:text="рейтинг"
-                        android:textColor="#F86707"
+                        android:textColor="@color/frame_color"
                         android:textSize="22sp" />
 
                     <TextView
@@ -84,7 +85,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/caveat_variablefont_wght"
                         android:text="оригинальное название"
-                        android:textColor="#F86707"
+                        android:textColor="@color/frame_color"
                         android:textSize="22sp" />
                 </LinearLayout>
 
@@ -100,7 +101,7 @@
                         android:layout_height="wrap_content"
                         android:text="дата"
                         android:fontFamily="@font/caveat_variablefont_wght"
-                        android:textColor="#F86707"
+                        android:textColor="@color/frame_color"
                         android:textSize="22sp" />
 
                     <TextView
@@ -108,7 +109,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:lines="1"
-                        android:textColor="#F86707"
+                        android:textColor="@color/frame_color"
                         android:fontFamily="@font/caveat_variablefont_wght"
                         android:text=" жанр"
                         android:textSize="22sp" />
@@ -118,7 +119,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/caveat_variablefont_wght"
-                        android:textColor="#F86707"
+                        android:textColor="@color/frame_color"
                         android:textSize="22sp" />
                 </LinearLayout>
 
@@ -136,7 +137,7 @@
                         android:lines="1"
                         android:text="страна, "
                         android:fontFamily="@font/caveat_variablefont_wght"
-                        android:textColor="#F86707"
+                        android:textColor="@color/frame_color"
                         android:textSize="22sp" />
                     <TextView
                         android:id="@+id/time_premiere_film"
@@ -145,7 +146,7 @@
                         android:gravity="center"
                         android:text="продолжительность"
                         android:fontFamily="@font/caveat_variablefont_wght"
-                        android:textColor="#F86707"
+                        android:textColor="@color/frame_color"
                         android:textSize="22sp" />
 
                     <TextView
@@ -155,7 +156,7 @@
                         android:gravity="center"
                         android:text=" аудитория"
                         android:fontFamily="@font/caveat_variablefont_wght"
-                        android:textColor="#F86707"
+                        android:textColor="@color/frame_color"
                         android:textSize="22sp" />
                 </LinearLayout>
 
@@ -232,7 +233,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/caveat_variablefont_wght"
-                    android:textColor="#F86707"
+                    android:textColor="@color/frame_color"
                     android:textSize="24sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
@@ -269,7 +270,7 @@
                     android:paddingRight="30dp"
                     android:text="Сезоны и серии"
                     android:fontFamily="@font/caveat_variablefont_wght"
-                    android:textColor="#F86707"
+                    android:textColor="@color/frame_color"
                     android:textSize="24sp"
                     android:textStyle="bold" />
 
@@ -281,7 +282,7 @@
                     android:paddingRight="30dp"
                     android:text="сезон,серии"
                     android:fontFamily="@font/caveat_variablefont_wght"
-                    android:textColor="#F86707"
+                    android:textColor="@color/frame_color"
                     android:textSize="18sp" />
             </LinearLayout>
 
@@ -300,7 +301,7 @@
                     android:paddingRight="30dp"
                     android:text="Все"
                     android:fontFamily="@font/caveat_variablefont_wght"
-                    android:textColor="#F86707"
+                    android:textColor="@color/frame_color"
                     android:textSize="24sp" />
 
             </LinearLayout>
@@ -325,7 +326,7 @@
                 android:paddingRight="30dp"
                 android:text="В фильме снимались"
                 android:fontFamily="@font/caveat_variablefont_wght"
-                android:textColor="#F86707"
+                android:textColor="@color/frame_color"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
@@ -336,7 +337,7 @@
                 android:layout_marginLeft="50dp"
                 android:text="#>"
                 android:fontFamily="@font/caveat_variablefont_wght"
-                android:textColor="#F86707"
+                android:textColor="@color/frame_color"
                 android:textSize="16sp" />/>
         </LinearLayout>
 
@@ -372,7 +373,7 @@
                 android:paddingRight="30dp"
                 android:text="Над фильмом работали"
                 android:fontFamily="@font/caveat_variablefont_wght"
-                android:textColor="#F86707"
+                android:textColor="@color/frame_color"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
@@ -385,7 +386,7 @@
                 android:paddingRight="55dp"
                 android:text="#>"
                 android:fontFamily="@font/caveat_variablefont_wght"
-                android:textColor="#F86707"
+                android:textColor="@color/frame_color"
                 android:textSize="16sp" />
         </LinearLayout>
 
@@ -420,7 +421,7 @@
                 android:paddingRight="30dp"
                 android:text="Галерея"
                 android:fontFamily="@font/caveat_variablefont_wght"
-                android:textColor="#F86707"
+                android:textColor="@color/frame_color"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
@@ -432,7 +433,7 @@
                 android:gravity="right"
                 android:text="Все >"
                 android:fontFamily="@font/caveat_variablefont_wght"
-                android:textColor="#F86707"
+                android:textColor="@color/frame_color"
                 android:textSize="16sp" />
         </LinearLayout>
 
@@ -467,7 +468,7 @@
                 android:paddingRight="30dp"
                 android:text="Похожие фильмы"
                 android:fontFamily="@font/caveat_variablefont_wght"
-                android:textColor="#F86707"
+                android:textColor="@color/frame_color"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
@@ -480,14 +481,14 @@
                 android:paddingRight="55dp"
                 android:text="# >"
                 android:fontFamily="@font/caveat_variablefont_wght"
-                android:textColor="#F86707"
+                android:textColor="@color/frame_color"
                 android:textSize="16sp"  />
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/relatedFilmList"
             android:layout_width="match_parent"
-            android:layout_height="220dp"
+            android:layout_height="226dp"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="50dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -498,6 +499,8 @@
             tools:listitem="@layout/similar_list" />
 
         <View
+            android:id="@+id/foot"
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             app:layout_constraintTop_toBottomOf="@id/relatedFilmList" />
