@@ -528,6 +528,7 @@ class MovieDetailFragment() : Fragment() {
             args.putInt("key", arg.movieDetailInfo.kinopoiskId)
             args.putInt("key2", arg.movieDetailInfo.filmId)
             args.putInt("key3", similarFilmId)
+            args.putString("key4",arg.movieDetailInfo.premiereRu)
 //            settingsDialogFragment.arguments=args
 //            settingsDialogFragment.show(parentFragmentManager,SettingsDialogFragment.TAG);
             findNavController().navigate(R.id.settingsDialogFragment, args)

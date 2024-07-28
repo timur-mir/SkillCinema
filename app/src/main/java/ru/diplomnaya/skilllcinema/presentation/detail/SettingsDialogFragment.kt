@@ -1,6 +1,7 @@
 package ru.diplomnaya.skilllcinema.presentation.detail
 
 import android.content.DialogInterface
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -196,11 +197,18 @@ class SettingsDialogFragment : BottomSheetDialogFragment() {
             viewModelByFilmInfoDetail.movies.onEach {
                 collectionFilm = modificationsToCollectionForRoom(it)
                 binding.titleAddFilm.text = it.nameRu
+                binding.ratingAddFilm.text=it.ratingImdb
                 binding.genresAddFilm.text = it.genres?.get(0)?.genre.toString()
-                Picasso.with(binding.posterAddFilm.context).load(it.posterUrlPreview)
-
+                if (it.posterUrlPreview==""){
+                    Picasso.with(requireContext()).load(arguments?.getString("key4"))
+                        .placeholder(R.drawable.fotosimple).into(binding.posterAddFilm)
+                }
+                else {
+                    Picasso.with(binding.posterAddFilm.context).load(it.posterUrlPreview)
+                        .placeholder(R.drawable.fotosimple).into(binding.posterAddFilm)
+                }
             }.launchIn(this)
-//                .placeholder(R.drawable.location_current).into(binding.posterAddFilm)
+//
         }
         // Создание коллекции  в "диалоговом режиме"
         binding.createNewCollection.setOnClickListener {
@@ -266,8 +274,8 @@ class SettingsDialogFragment : BottomSheetDialogFragment() {
         rowNewCollection.id = number
 
         val checkBox = AppCompatCheckBox(requireContext())
-
         checkBox.text = "$nameCollection"
+        checkBox.setTextColor(Color.WHITE)
         checkBox.tag = number
         checkBox.width = 250
         viewLifecycleOwner.lifecycleScope.launch {
@@ -327,6 +335,7 @@ class SettingsDialogFragment : BottomSheetDialogFragment() {
 
         if (textView != null) {
             textView.text = sizeCollectionForBindTextView
+            textView.setTextColor(Color.WHITE)
             textView.setOnClickListener {
 
                 itemAddFlag = true
