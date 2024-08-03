@@ -74,10 +74,13 @@ class SettingsDialogFragment : BottomSheetDialogFragment() {
         bindingCopy = binding
         val mArgs = arguments
         if (mArgs!!.getInt("key2") != 0 && callTheSimilarFlag == false) {
-            idFilm = mArgs!!.getInt("key2")
+            idFilm = mArgs.getInt("key2")
         } else {
             if (mArgs!!.getInt("key") != 0 && callTheSimilarFlag == false) {
-                idFilm = mArgs!!.getInt("key")
+                idFilm = mArgs.getInt("key")
+            }
+            else if(callTheSimilarFlag){
+                idFilm=mArgs.getInt("key3")
             }
         }
 
