@@ -19,16 +19,44 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/poster"
-                android:layout_width="wrap_content"
-                android:layout_height="180dp"
+            <!--            <androidx.appcompat.widget.AppCompatImageView-->
+            <!--                android:id="@+id/poster"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="180dp"-->
+            <!--                android:layout_marginTop="12dp"-->
+            <!--                app:circularflow_defaultRadius="20dp"-->
+            <!--                app:layout_constraintBottom_toTopOf="@+id/baseInfo"-->
+            <!--                app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                app:layout_constraintStart_toStartOf="parent"-->
+            <!--                app:layout_constraintTop_toTopOf="parent" />-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                app:circularflow_defaultRadius="@dimen/cardview_default_radius"
+                android:gravity="center"
                 app:layout_constraintBottom_toTopOf="@+id/baseInfo"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:orientation="horizontal">
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <pl.droidsonroids.gif.GifImageView
+                        android:id="@+id/star5"
+                        android:layout_width="match_parent"
+                        android:layout_height="180dp"
+                        android:src="@drawable/stars2"/>
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/poster"
+                        android:layout_width="wrap_content"
+                        android:layout_height="180dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/inhouse"/>
+                </FrameLayout>
+
+            </LinearLayout>
 
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/zoom"
@@ -57,10 +85,10 @@
                         android:id="@+id/name_premiere_film"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
                         android:fontFamily="@font/caveat_variablefont_wght"
-                        android:textColor="@color/frame_color"
+                        android:gravity="center"
                         android:text="Заголовок "
+                        android:textColor="@color/frame_color"
                         android:textSize="30sp" />
                 </LinearLayout>
 
@@ -99,8 +127,8 @@
                         android:id="@+id/year_premiere_film"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="дата"
                         android:fontFamily="@font/caveat_variablefont_wght"
+                        android:text="дата"
                         android:textColor="@color/frame_color"
                         android:textSize="22sp" />
 
@@ -108,10 +136,10 @@
                         android:id="@+id/genre_name_premiere_film"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:lines="1"
-                        android:textColor="@color/frame_color"
                         android:fontFamily="@font/caveat_variablefont_wght"
+                        android:lines="1"
                         android:text=" жанр"
+                        android:textColor="@color/frame_color"
                         android:textSize="22sp" />
 
                     <TextView
@@ -133,19 +161,20 @@
                         android:id="@+id/country_premiere_film"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/caveat_variablefont_wght"
                         android:gravity="center"
                         android:lines="1"
                         android:text="страна, "
-                        android:fontFamily="@font/caveat_variablefont_wght"
                         android:textColor="@color/frame_color"
                         android:textSize="22sp" />
+
                     <TextView
                         android:id="@+id/time_premiere_film"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/caveat_variablefont_wght"
                         android:gravity="center"
                         android:text="продолжительность"
-                        android:fontFamily="@font/caveat_variablefont_wght"
                         android:textColor="@color/frame_color"
                         android:textSize="22sp" />
 
@@ -153,9 +182,9 @@
                         android:id="@+id/age_premiere_film"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/caveat_variablefont_wght"
                         android:gravity="center"
                         android:text=" аудитория"
-                        android:fontFamily="@font/caveat_variablefont_wght"
                         android:textColor="@color/frame_color"
                         android:textSize="22sp" />
                 </LinearLayout>
@@ -266,10 +295,10 @@
                     android:id="@+id/season"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/caveat_variablefont_wght"
                     android:paddingLeft="30dp"
                     android:paddingRight="30dp"
                     android:text="Сезоны и серии"
-                    android:fontFamily="@font/caveat_variablefont_wght"
                     android:textColor="@color/frame_color"
                     android:textSize="24sp"
                     android:textStyle="bold" />
@@ -278,10 +307,10 @@
                     android:id="@+id/season_and_series"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/caveat_variablefont_wght"
                     android:paddingLeft="30dp"
                     android:paddingRight="30dp"
                     android:text="сезон,серии"
-                    android:fontFamily="@font/caveat_variablefont_wght"
                     android:textColor="@color/frame_color"
                     android:textSize="18sp" />
             </LinearLayout>
@@ -296,11 +325,11 @@
                     android:id="@+id/allSeason_info"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/caveat_variablefont_wght"
                     android:gravity="right"
                     android:paddingLeft="30dp"
                     android:paddingRight="30dp"
                     android:text="Все"
-                    android:fontFamily="@font/caveat_variablefont_wght"
                     android:textColor="@color/frame_color"
                     android:textSize="24sp" />
 
@@ -322,10 +351,10 @@
                 android:id="@+id/starredInFilmTitle"
                 android:layout_width="260dp"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/caveat_variablefont_wght"
                 android:paddingLeft="30dp"
                 android:paddingRight="30dp"
                 android:text="В фильме снимались"
-                android:fontFamily="@font/caveat_variablefont_wght"
                 android:textColor="@color/frame_color"
                 android:textSize="24sp"
                 android:textStyle="bold" />
@@ -335,8 +364,8 @@
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="50dp"
-                android:text="#>"
                 android:fontFamily="@font/caveat_variablefont_wght"
+                android:text="#>"
                 android:textColor="@color/frame_color"
                 android:textSize="16sp" />/>
         </LinearLayout>
@@ -369,10 +398,10 @@
                 android:id="@+id/starredUnderFilmTitle"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/caveat_variablefont_wght"
                 android:paddingLeft="30dp"
                 android:paddingRight="30dp"
                 android:text="Над фильмом работали"
-                android:fontFamily="@font/caveat_variablefont_wght"
                 android:textColor="@color/frame_color"
                 android:textSize="24sp"
                 android:textStyle="bold" />
@@ -381,11 +410,11 @@
                 android:id="@+id/starredAmountUnderInFilmButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/caveat_variablefont_wght"
                 android:gravity="right"
                 android:paddingLeft="30dp"
                 android:paddingRight="55dp"
                 android:text="#>"
-                android:fontFamily="@font/caveat_variablefont_wght"
                 android:textColor="@color/frame_color"
                 android:textSize="16sp" />
         </LinearLayout>
@@ -417,10 +446,10 @@
                 android:id="@+id/gallery"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/caveat_variablefont_wght"
                 android:paddingLeft="30dp"
                 android:paddingRight="30dp"
                 android:text="Галерея"
-                android:fontFamily="@font/caveat_variablefont_wght"
                 android:textColor="@color/frame_color"
                 android:textSize="24sp"
                 android:textStyle="bold" />
@@ -430,9 +459,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="80dp"
+                android:fontFamily="@font/caveat_variablefont_wght"
                 android:gravity="right"
                 android:text="Все >"
-                android:fontFamily="@font/caveat_variablefont_wght"
                 android:textColor="@color/frame_color"
                 android:textSize="16sp" />
         </LinearLayout>
@@ -464,10 +493,10 @@
                 android:id="@+id/relatedFilm"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/caveat_variablefont_wght"
                 android:paddingLeft="30dp"
                 android:paddingRight="30dp"
                 android:text="Похожие фильмы"
-                android:fontFamily="@font/caveat_variablefont_wght"
                 android:textColor="@color/frame_color"
                 android:textSize="24sp"
                 android:textStyle="bold" />
@@ -476,13 +505,13 @@
                 android:id="@+id/amountRelatedFilm"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/caveat_variablefont_wght"
                 android:gravity="right"
                 android:paddingLeft="30dp"
                 android:paddingRight="55dp"
                 android:text="# >"
-                android:fontFamily="@font/caveat_variablefont_wght"
                 android:textColor="@color/frame_color"
-                android:textSize="16sp"  />
+                android:textSize="16sp" />
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
@@ -500,9 +529,9 @@
 
         <View
             android:id="@+id/foot"
-            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="200dp"
+            android:layout_marginTop="10dp"
             app:layout_constraintTop_toBottomOf="@id/relatedFilmList" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 

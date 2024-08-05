@@ -126,10 +126,11 @@ class MovieDetailFragment() : Fragment() {
                 binding.addToFavorite.setImageResource(R.drawable.heart)
                 binding.addToIWantToSee.setImageResource(R.drawable.bookmark)
                 binding.alreadyViewed.setImageResource(R.drawable.eye_closed)
+                callTheSimilarFlag = false
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
-        callTheSimilarFlag = false
+        //callTheSimilarFlag = false
 
         val arg: MovieDetailFragmentArgs by navArgs()
 
@@ -488,13 +489,13 @@ class MovieDetailFragment() : Fragment() {
             binding.poster.updateLayoutParams { height = 520 }
             binding.zoom.visibility = View.GONE
         }
-        binding.poster.setOnClickListener {
-            // binding.headLevel.background= forAddProfile
-            Picasso.with(requireContext())
-                .load(forAddProfile.posterUrlPreview)
-                .into(binding.poster)
-
-        }
+//        binding.poster.setOnClickListener {
+//            // binding.headLevel.background= forAddProfile
+//            Picasso.with(requireContext())
+//                .load(forAddProfile.posterUrlPreview)
+//                .into(binding.poster)
+//
+//        }
         viewLifecycleOwner.lifecycleScope
             .launch {
                 viewModelByFilmInfoDetail.getFilmDetailInfo(
@@ -509,7 +510,7 @@ class MovieDetailFragment() : Fragment() {
                             setPoster(arg.movieDetailInfo.posterUrl.toString())
                         }
                         else {
-                            setPoster(it.posterUrlPreview.toString())
+                            setPoster(arg.movieDetailInfo.posterUrl.toString())
                         }
                         forAddProfile = it
                         FlagAndObject.requestFilm = modificationsToRoom(it)
@@ -704,6 +705,7 @@ class MovieDetailFragment() : Fragment() {
             .load(posterUrl)
             .into(binding.poster)
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
 //        _binding = null
