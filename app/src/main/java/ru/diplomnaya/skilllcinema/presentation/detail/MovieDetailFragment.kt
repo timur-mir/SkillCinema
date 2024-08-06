@@ -494,7 +494,7 @@ class MovieDetailFragment() : Fragment() {
         binding.zoom.setOnClickListener {
             heightSize = 50
             heightMutableSize += heightSize
-            if (heightMutableSize >= 500) {
+            if (heightMutableSize > 500) {
                 heightSize = 0
             }
             binding.poster.doOnLayout { measuredView ->
@@ -506,15 +506,13 @@ class MovieDetailFragment() : Fragment() {
             heightSize = 50
             if (heightMutableSize==0) {
                 heightSize = 0
-            } else {
+            }
                     if (heightMutableSize > 500) {
                         heightMutableSize = 500
                     }
+                if(heightMutableSize>=50){
                     heightMutableSize -= 50
-                if(heightMutableSize<50){
-                    heightSize=0
                 }
-            }
             binding.poster.doOnLayout { measuredView ->
                 binding.poster.updateLayoutParams {
                     height = measuredView.height - heightSize
