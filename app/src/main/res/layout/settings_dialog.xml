@@ -185,7 +185,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="46dp"
-            android:src="@drawable/plus"
+            android:src="@drawable/zoom_plus"
             app:layout_constraintBottom_toBottomOf="@+id/create_Collection"
             app:layout_constraintStart_toStartOf="@+id/create_Collection"
             app:layout_constraintTop_toTopOf="@+id/create_Collection"

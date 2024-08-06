@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 
 import androidx.activity.OnBackPressedCallback
+import androidx.core.view.doOnLayout
 import androidx.core.view.updateLayoutParams
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -51,6 +52,7 @@ import ru.diplomnaya.skilllcinema.presentation.main.adapters.StaffStarredAdapter
 import ru.diplomnaya.skilllcinema.presentation.profile.InterestedStaffsViewModel
 import ru.diplomnaya.skilllcinema.presentation.serial.SerialActivity
 import ru.diplomnaya.skilllcinema.utilits.ItemOffsetDecoration
+import kotlin.math.abs
 import kotlin.properties.Delegates
 
 class MovieDetailFragment() : Fragment() {
@@ -186,7 +188,7 @@ class MovieDetailFragment() : Fragment() {
         filmForStaffStarredDownLoad = arg.movieDetailInfo
 
         viewLifecycleOwner.lifecycleScope.launch {
-          //  staffStarredViewModel.staffStarred.collect { it-> }
+            //  staffStarredViewModel.staffStarred.collect { it-> }
             staffStarredViewModel.staffStarred
                 .onEach { staff ->
                     staffStarredAdapter.submitData(staff)
@@ -485,17 +487,41 @@ class MovieDetailFragment() : Fragment() {
         binding.share.setOnClickListener {
             sendUrlFilm(FlagAndObject.requestFilm.imdbId.toString())
         }
+
+        var heightSize = 0
+        var heightMutableSize = 0
+
         binding.zoom.setOnClickListener {
-            binding.poster.updateLayoutParams { height = 520 }
-            binding.zoom.visibility = View.GONE
+            heightSize = 50
+            heightMutableSize += heightSize
+            if (heightMutableSize >= 500) {
+                heightSize = 0
+            }
+            binding.poster.doOnLayout { measuredView ->
+                binding.poster.updateLayoutParams { height = heightSize + measuredView.height }
+            }
+
         }
-//        binding.poster.setOnClickListener {
-//            // binding.headLevel.background= forAddProfile
-//            Picasso.with(requireContext())
-//                .load(forAddProfile.posterUrlPreview)
-//                .into(binding.poster)
-//
-//        }
+        binding.minus.setOnClickListener {
+            heightSize = 50
+            if (heightMutableSize==0) {
+                heightSize = 0
+            } else {
+                    if (heightMutableSize > 500) {
+                        heightMutableSize = 500
+                    }
+                    heightMutableSize -= 50
+                if(heightMutableSize<50){
+                    heightSize=0
+                }
+            }
+            binding.poster.doOnLayout { measuredView ->
+                binding.poster.updateLayoutParams {
+                    height = measuredView.height - heightSize
+
+                }
+            }
+        }
         viewLifecycleOwner.lifecycleScope
             .launch {
                 viewModelByFilmInfoDetail.getFilmDetailInfo(
@@ -506,10 +532,9 @@ class MovieDetailFragment() : Fragment() {
                         filmPosterUrl = it.posterUrlPreview.toString()
                         filmDetailInfo(it)
                         filmId = it.kinopoiskId
-                        if(arg.movieDetailInfo.posterUrl.toString().isNotEmpty()) {
+                        if (arg.movieDetailInfo.posterUrl.toString().isNotEmpty()) {
                             setPoster(arg.movieDetailInfo.posterUrl.toString())
-                        }
-                        else {
+                        } else {
                             setPoster(arg.movieDetailInfo.posterUrl.toString())
                         }
                         forAddProfile = it
@@ -529,7 +554,7 @@ class MovieDetailFragment() : Fragment() {
             args.putInt("key", arg.movieDetailInfo.kinopoiskId)
             args.putInt("key2", arg.movieDetailInfo.filmId)
             args.putInt("key3", similarFilmId)
-            args.putString("key4",arg.movieDetailInfo.premiereRu)
+            args.putString("key4", arg.movieDetailInfo.premiereRu)
 //            settingsDialogFragment.arguments=args
 //            settingsDialogFragment.show(parentFragmentManager,SettingsDialogFragment.TAG);
             findNavController().navigate(R.id.settingsDialogFragment, args)

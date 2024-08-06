@@ -94,7 +94,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="14dp"
-                    android:src="@drawable/plus" />
+                    android:src="@drawable/zoom_plus" />
 
                 <TextView
                     android:id="@+id/createNewCollectionView_Second_Use"
