@@ -8,6 +8,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="clear_history_viewed_films">Очистить историю</string>
     <string name="clear_films">Clear films</string>
+
     <string name="customization_search">Настройка поиска</string>
     <string name="show_films_or_serials_or_all">Показывать</string>
     <string name="show_all">Всё</string>
