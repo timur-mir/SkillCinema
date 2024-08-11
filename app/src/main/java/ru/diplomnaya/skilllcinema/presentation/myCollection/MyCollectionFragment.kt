@@ -2,9 +2,12 @@ package ru.diplomnaya.skilllcinema.presentation.myCollection
 
 import android.graphics.Color
 import android.os.Bundle
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
@@ -17,13 +20,18 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
+import com.squareup.picasso.Picasso
+import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import ru.diplomnaya.skilllcinema.R
 import ru.diplomnaya.skilllcinema.databinding.MyCollectionFragmentBinding
+import ru.diplomnaya.skilllcinema.model.Movie
 import ru.diplomnaya.skilllcinema.model.database.CollectionFilm
 import ru.diplomnaya.skilllcinema.model.database.ItemCollection
 import ru.diplomnaya.skilllcinema.presentation.detail.AnyData
 import ru.diplomnaya.skilllcinema.utilits.ItemOffsetDecoration
+import ru.diplomnaya.skilllcinema.view.MovieListFragmentDirections
 
 
 class MyCollectionFragment : Fragment() {
@@ -31,15 +39,20 @@ class MyCollectionFragment : Fragment() {
     private var _binding: MyCollectionFragmentBinding? = null
     private val binding get() = _binding!!
 
-    var myCollectionFilmAdapter = MyCollectionAdapter { collection -> }
+    var myCollectionFilmAdapter = MyCollectionAdapter { collection -> collection.nameRu?.let {
+        onItemClickOnListSimpleCollection(
+            it,collection.posterUrlPreview
+        )
+    } }
 
     private val collectionsViewModel by viewModels<CollectionsViewModel>()
     val listCollection = mutableListOf<CollectionFilm>()
-    companion object {
-        var idCollection = 0
-        lateinit var temporaryCollectionFilm: CollectionFilm
+    var listCollectionForSave = mutableListOf<CollectionFilm>()
 
+    companion object {
+        var parentId = 0
     }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -60,10 +73,6 @@ class MyCollectionFragment : Fragment() {
             .launch {
                 collectionsViewModel.getAllCollection()
             }
-        val layoutManger = LinearLayoutManager(
-            requireContext(),
-            LinearLayoutManager.VERTICAL, false
-        )
         val layoutManger2 = GridLayoutManager(requireContext(), 2).apply {
             GridLayoutManager.VERTICAL
         }
@@ -81,23 +90,27 @@ class MyCollectionFragment : Fragment() {
             }
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val position = viewHolder.adapterPosition
                 val deletedCollectionFilm: CollectionFilm =
-                    listCollection[viewHolder.bindingAdapterPosition]
-                temporaryCollectionFilm = deletedCollectionFilm
-                removeFilm(arg.collectionName)
-                    Snackbar.make(
+                    listCollection[position]
+
+                listCollectionForSave.add(deletedCollectionFilm)
+                listCollection.removeAt(position)
+                myCollectionFilmAdapter.notifyItemRemoved(position)
+
+
+                Snackbar.make(
                     binding.myCollectionRecycler,
                     "Удалёние фильма:  " + deletedCollectionFilm.nameRu,
                     Snackbar.LENGTH_INDEFINITE
                 )
                     .setActionTextColor(Color.WHITE)
-                    .setBackgroundTint((Color.BLUE))
+                    .setBackgroundTint((Color.RED))
                     .setAction("Отменить", View.OnClickListener {
-                        collectionsViewModel.addNewCollectionItem(
-                            ItemCollection(
-                                0, temporaryCollectionFilm, idCollection
-                            )
-                        )
+                        listCollection.add(position, deletedCollectionFilm)
+                        myCollectionFilmAdapter.notifyItemInserted(position)
+                        listCollectionForSave.remove(deletedCollectionFilm)
+
                     }
                     )
                     .setDuration(6000)
@@ -108,49 +121,58 @@ class MyCollectionFragment : Fragment() {
 
     }
 
-    fun removeFilm(paramName:String) {
+    override fun onPause() {
+        super.onPause()
         viewLifecycleOwner.lifecycleScope.launch {
-            collectionsViewModel.removeItemsOfCollectionFilmById(
-                idCollection,
-                temporaryCollectionFilm
-            )
+            listCollectionForSave.forEach { movie ->
+                collectionsViewModel.removeFilm(movie)
+            }
         }
-        loadSelectLoadCollections(paramName)
+    }
+    fun onItemClickOnListSimpleCollection(item: String,posterUrl:String) {
+
+            val inflater = layoutInflater;
+            val layout = inflater.inflate(R.layout.toast_layout,requireActivity().findViewById(R.id.toast_layout_root) );
+            val image = layout.findViewById<ImageView>(R.id.image_toast);
+            val text = layout.findViewById<TextView>(R.id.toast_text);
+            text.text = "Для удаления из коллекции фильма: ${item} нужно смахнуть его вправо"
+            val toast = Toast(requireContext());
+            toast.setGravity(Gravity.CENTER_VERTICAL, 60, 260);
+            toast.duration = Toast.LENGTH_LONG;
+        Picasso.with(requireContext())
+            .load(posterUrl)
+            .into(image)
+            toast.setView(layout);
+            toast.show()
 
 
     }
-    private fun loadSelectLoadCollections(collectionName:String){
+
+    private fun loadSelectLoadCollections(collectionName: String) {
         collectionsViewModel.collectionFilmsLiveData.observe(viewLifecycleOwner) { list ->
-            listCollection.clear()
             if (list.isNotEmpty()) {
-
                 for (single in list) {
-
-                    if (single.collections.CollectionName ==collectionName) {
+                    if (single.collections.CollectionName == collectionName) {
                         single.itemCollectionsList.forEach {
                             if (it.parentCollectionID == single.collections.collectionID) {
-                                idCollection = it.parentCollectionID
+                                parentId = it.parentCollectionID
                                 listCollection.add(it.collectionFilmProfile)
                             }
-                            binding.myCollectionRecycler.removeAllViews()
-
-                            binding.myCollectionRecycler.adapter =
-                                myCollectionFilmAdapter
-                            myCollectionFilmAdapter.submitList(listCollection)
-
-
                         }
                     }
                 }
 
             }
+            binding.myCollectionRecycler.adapter =
+                myCollectionFilmAdapter
+            myCollectionFilmAdapter.submitList(listCollection)
 
         }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-     //   _binding = null
+        //   _binding = null
         binding.myCollectionRecycler.adapter = null
     }
 }

@@ -14,7 +14,7 @@ class CollectionRepository {
     suspend fun addCollection(collections: Collections) =
         collectionDao.addNewCollectionFilm(collections)
 
-    suspend fun addCollectiontem(collectionsItem: ItemCollection) =
+    suspend fun addCollectionItem(collectionsItem: ItemCollection) =
         collectionDao.addNewItems(collectionsItem)
 
     suspend fun getCollectionsById(id: Int): Flow<CollectionsWithItemCollection> =

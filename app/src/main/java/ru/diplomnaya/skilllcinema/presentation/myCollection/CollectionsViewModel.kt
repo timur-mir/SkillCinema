@@ -34,15 +34,15 @@ class CollectionsViewModel private constructor(
         get() = itemCollections
 
     var size: Int = 0
-    fun addNewCollection(newColection: Collections) {
+    fun addNewCollection(newCollection: Collections) {
         viewModelScope.launch(Dispatchers.IO) {
-            collectionRepository.addCollection(newColection)
+            collectionRepository.addCollection(newCollection)
         }
     }
 
-    fun addNewCollectionItem(newColectionItem: ItemCollection) {
+    fun addNewCollectionItem(newCollectionItem: ItemCollection) {
         viewModelScope.launch(Dispatchers.IO) {
-            collectionRepository.addCollectiontem(newColectionItem)
+            collectionRepository.addCollectionItem(newCollectionItem)
         }
     }
 
