@@ -1,5 +1,6 @@
 package ru.diplomnaya.skilllcinema.presentation.myCollection
 
+import android.content.res.Resources
 import android.graphics.Color
 import android.os.Bundle
 import android.view.Gravity
@@ -9,29 +10,22 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.ItemTouchHelper
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.squareup.picasso.Picasso
-import kotlinx.coroutines.DelicateCoroutinesApi
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import ru.diplomnaya.skilllcinema.R
 import ru.diplomnaya.skilllcinema.databinding.MyCollectionFragmentBinding
-import ru.diplomnaya.skilllcinema.model.Movie
 import ru.diplomnaya.skilllcinema.model.database.CollectionFilm
-import ru.diplomnaya.skilllcinema.model.database.ItemCollection
-import ru.diplomnaya.skilllcinema.presentation.detail.AnyData
 import ru.diplomnaya.skilllcinema.utilits.ItemOffsetDecoration
-import ru.diplomnaya.skilllcinema.view.MovieListFragmentDirections
+import ru.diplomnaya.skilllcinema.utilits.getScreenHeight
+import ru.diplomnaya.skilllcinema.utilits.getScreenWidth
 
 
 class MyCollectionFragment : Fragment() {
@@ -47,7 +41,7 @@ class MyCollectionFragment : Fragment() {
 
     private val collectionsViewModel by viewModels<CollectionsViewModel>()
     val listCollection = mutableListOf<CollectionFilm>()
-    var listCollectionForSave = mutableListOf<CollectionFilm>()
+    var listCollectionForRemove = mutableListOf<CollectionFilm>()
 
     companion object {
         var parentId = 0
@@ -94,7 +88,7 @@ class MyCollectionFragment : Fragment() {
                 val deletedCollectionFilm: CollectionFilm =
                     listCollection[position]
 
-                listCollectionForSave.add(deletedCollectionFilm)
+                listCollectionForRemove.add(deletedCollectionFilm)
                 listCollection.removeAt(position)
                 myCollectionFilmAdapter.notifyItemRemoved(position)
 
@@ -109,7 +103,7 @@ class MyCollectionFragment : Fragment() {
                     .setAction("Отменить", View.OnClickListener {
                         listCollection.add(position, deletedCollectionFilm)
                         myCollectionFilmAdapter.notifyItemInserted(position)
-                        listCollectionForSave.remove(deletedCollectionFilm)
+                        listCollectionForRemove.remove(deletedCollectionFilm)
 
                     }
                     )
@@ -124,20 +118,19 @@ class MyCollectionFragment : Fragment() {
     override fun onPause() {
         super.onPause()
         viewLifecycleOwner.lifecycleScope.launch {
-            listCollectionForSave.forEach { movie ->
+            listCollectionForRemove.forEach { movie ->
                 collectionsViewModel.removeFilm(movie)
             }
         }
     }
-    fun onItemClickOnListSimpleCollection(item: String,posterUrl:String) {
-
+    private fun onItemClickOnListSimpleCollection(item: String, posterUrl:String) {
             val inflater = layoutInflater;
             val layout = inflater.inflate(R.layout.toast_layout,requireActivity().findViewById(R.id.toast_layout_root) );
             val image = layout.findViewById<ImageView>(R.id.image_toast);
             val text = layout.findViewById<TextView>(R.id.toast_text);
-            text.text = "Для удаления из коллекции фильма: ${item} нужно смахнуть его вправо"
+            text.text = "$item"
             val toast = Toast(requireContext());
-            toast.setGravity(Gravity.CENTER_VERTICAL, 60, 260);
+            toast.setGravity(Gravity.CENTER_VERTICAL, getScreenWidth()/4, getScreenHeight()/2);
             toast.duration = Toast.LENGTH_LONG;
         Picasso.with(requireContext())
             .load(posterUrl)
@@ -175,6 +168,7 @@ class MyCollectionFragment : Fragment() {
         //   _binding = null
         binding.myCollectionRecycler.adapter = null
     }
+
 }
 
 

@@ -64,6 +64,9 @@
         <action
             android:id="@+id/action_profileFragment2_to_aboutActorFragment"
             app:destination="@id/aboutActorFragment" />
+        <action
+            android:id="@+id/action_profileFragment2_to_favouriteFragment"
+            app:destination="@id/favouriteFragment" />
     </fragment>
 
     <fragment
@@ -186,7 +189,8 @@
     <fragment
         android:id="@+id/actorFaceFragment"
         android:name="ru.diplomnaya.skilllcinema.presentation.actors.ActorFaceFragment"
-        android:label="ActorFaceFragment">
+        android:label="ActorFaceFragment"
+        tools:layout="@layout/my_favourite_fragment" >
         <argument android:name="actorsPosterUrl"
             app:argType="string"/>
 
@@ -199,6 +203,14 @@
             android:name="urlPic"
             app:argType="string" />
 
+    </fragment>
+    <fragment
+        android:id="@+id/favouriteFragment"
+        android:name="ru.diplomnaya.skilllcinema.presentation.myfavourite.FavouriteFragment"
+        android:label="FavouriteFragment" >
+    <argument
+        android:name="filmName"
+        app:argType="string" />
     </fragment>
 
 

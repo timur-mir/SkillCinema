@@ -123,11 +123,9 @@ class ProfileFragment : Fragment() {
 
 
         binding.favouriteTile.setOnClickListener {
-            val action =
-                ProfileFragmentDirections.actionProfileFragment2ToMyCollectionFragment(
-                    "Любимые"
-                )
-            findNavController().navigate(action)
+            val args = Bundle()
+            args.putString("name","Любимые")
+            findNavController().navigate(R.id.favouriteFragment,args)
 
         }
 

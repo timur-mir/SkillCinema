@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_view_my_viewed"
+    android:layout_width="130dp"
+    android:layout_height="220dp"
+    app:cardCornerRadius="12dp"
+    app:strokeColor="#770C30"
+    app:strokeWidth="2dp">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="130dp"
+        android:layout_height="220dp"
+        android:background="@drawable/gradient4">
+
+
+        <TextView
+            android:id="@+id/ratingLabelVF"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="4dp"
+            android:textSize="8sp"
+            android:background="#6176E6"
+            android:textColor="@color/white"
+            android:text="7.7"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/titleVF"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:paddingLeft="2dp"
+            android:text="Title"
+            android:textSize="12sp"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="@+id/posterVF"
+            app:layout_constraintTop_toBottomOf="@+id/posterVF"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/genresVF"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:text="Genres"
+            android:textSize="10sp"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="@+id/titleVF"
+            app:layout_constraintTop_toBottomOf="@+id/titleVF" />
+
+
+        <ImageView
+            android:id="@+id/posterVF"
+            android:layout_width="130dp"
+            android:layout_height="156dp"
+            android:layout_marginTop="1dp"
+            android:contentDescription="TODO"
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/gradient2" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

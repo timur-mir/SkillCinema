@@ -144,7 +144,9 @@ class SettingsDialogFragment : BottomSheetDialogFragment() {
                 }
             }
         }
-
+binding.quantityFavourite.setOnClickListener {
+//  findNavController().navigate(action)
+}
         binding.iWantToSee.setOnClickListener(View.OnClickListener {
             Toast.makeText(requireContext(), "I want to see", Toast.LENGTH_LONG).show()
             if (binding.iWantToSee.isPressed) {
