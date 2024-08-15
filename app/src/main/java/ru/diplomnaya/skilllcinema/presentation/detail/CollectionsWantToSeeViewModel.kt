@@ -1,13 +1,16 @@
 package ru.diplomnaya.skilllcinema.presentation.detail
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
 import ru.diplomnaya.skilllcinema.model.allRepository.WantToSeeRepository
+import ru.diplomnaya.skilllcinema.model.database.FavouritesEntity
 import ru.diplomnaya.skilllcinema.model.database.WantToSeeEntity
 
 class CollectionsWantToSeeViewModel private constructor(
@@ -19,6 +22,9 @@ class CollectionsWantToSeeViewModel private constructor(
 
     val existLive: LiveData<Boolean>
         get() = exist
+    private val wantToSeeFilms: MutableLiveData<List<WantToSeeEntity>> = MutableLiveData()
+    val wantToSeeFilmsLiveData:LiveData<List<WantToSeeEntity>>
+        get() = wantToSeeFilms
     override fun onCleared() {
         super.onCleared()
     }
@@ -48,8 +54,20 @@ class CollectionsWantToSeeViewModel private constructor(
         }
     }
 
-    fun getAllWantToSee(): Flow<List<WantToSeeEntity>> = repository.getWantToSeeFilms()
-    fun getWantToSeeById(id: Int): Flow<WantToSeeEntity> =
+  //  fun getAllWantToSee(): Flow<List<WantToSeeEntity>> = repository.getWantToSeeFilms()
+    fun getAllWantToSee() {
+      viewModelScope.launch {
+          repository.getWantToSeeFilms()
+              .catch { e ->
+                  Log.d("error", "${e.message}")
+              }
+              .collect { response ->
+                  wantToSeeFilms.value = response
+              }
+      }
+  }
+
+        fun getWantToSeeById(id: Int): Flow<WantToSeeEntity> =
         repository.getWantToSeeFilmsById(id)
     suspend fun getCollectionsSize():Int =
         repository.getCollectionsSize()

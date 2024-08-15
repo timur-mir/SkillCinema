@@ -146,9 +146,9 @@ if(addNewCollectionFlag){
 
 
         binding.wantToSee.setOnClickListener {
-            val action =
-                ProfileFragmentDirections.actionProfileFragment2ToMyCollectionFragment(binding.wantToSee.getNameCollection())
-            findNavController().navigate(action)
+            val args = Bundle()
+            args.putString("name", "Хочу посмотреть")
+            findNavController().navigate(ru.diplomnaya.skilllcinema.R.id.myWantToSeeFragment, args)
         }
 
 
@@ -327,6 +327,7 @@ if(addNewCollectionFlag){
         toast.setView(layout);
         toast.show()
           loadCollectionFragment(item)
+
         }
         else {
             text.text = "Создайте особенную коллекцию!"

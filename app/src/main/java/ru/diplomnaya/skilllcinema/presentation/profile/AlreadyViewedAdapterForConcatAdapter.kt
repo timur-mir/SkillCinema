@@ -91,6 +91,7 @@ class AlreadyViewedAdapterForConcatAdapter(private val onClick: (AlreadyViewedEn
             is ButtonViewHolder->{
                 with(holder.binding) {
                  infoString.text = holder.itemView.resources.getString(R.string.clear_history_viewed_films)
+
                     clearButton.setOnClickListener {
                         Toast.makeText(
                            holder.itemView.context, "Удаление истории", Toast.LENGTH_LONG

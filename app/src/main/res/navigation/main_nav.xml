@@ -67,6 +67,9 @@
         <action
             android:id="@+id/action_profileFragment2_to_favouriteFragment"
             app:destination="@id/favouriteFragment" />
+        <action
+            android:id="@+id/action_profileFragment2_to_myWantToSeeFragment"
+            app:destination="@id/myWantToSeeFragment" />
     </fragment>
 
     <fragment
@@ -130,6 +133,12 @@
             app:launchSingleTop="true"
             app:popUpTo="@+id/main_nav"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_settingsDialogFragment_to_favouriteFragment"
+            app:destination="@id/favouriteFragment" />
+        <action
+            android:id="@+id/action_settingsDialogFragment_to_myWantToSeeFragment"
+            app:destination="@id/myWantToSeeFragment" />
     </dialog>
     <fragment
         android:id="@+id/settingsSearchMainFragment"
@@ -211,6 +220,14 @@
     <argument
         android:name="filmName"
         app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/myWantToSeeFragment"
+        android:name="ru.diplomnaya.skilllcinema.presentation.MyWantToSee.MyWantToSeeFragment"
+        android:label="MyWantToSeeFragment" >
+        <argument
+            android:name="filmWantToSeeName"
+            app:argType="string" />
     </fragment>
 
 

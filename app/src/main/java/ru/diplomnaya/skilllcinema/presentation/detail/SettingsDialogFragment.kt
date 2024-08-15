@@ -145,10 +145,20 @@ class SettingsDialogFragment : BottomSheetDialogFragment() {
             }
         }
 binding.quantityFavourite.setOnClickListener {
-//  findNavController().navigate(action)
+    val args = Bundle()
+    args.putString("name", "Любимые")
+    findNavController().navigate(ru.diplomnaya.skilllcinema.R.id.favouriteFragment, args)
+
 }
+        binding.quantityWantToSee.setOnClickListener {
+            val args = Bundle()
+            args.putString("name", "Хочу посмотреть")
+            findNavController().navigate(ru.diplomnaya.skilllcinema.R.id.myWantToSeeFragment, args)
+
+        }
+
         binding.iWantToSee.setOnClickListener(View.OnClickListener {
-            Toast.makeText(requireContext(), "I want to see", Toast.LENGTH_LONG).show()
+            Toast.makeText(requireContext(), "Хочу посмотреть", Toast.LENGTH_LONG).show()
             if (binding.iWantToSee.isPressed) {
                 if (!binding.iWantToSee.isChecked)
                     lifecycle.coroutineScope.launch {
