@@ -25,7 +25,7 @@ abstract class CollectionsFilmsDatabase : RoomDatabase() {
     abstract fun interestedStaffDao():InterestedStaffDao
 
     companion object {
-        const val DB_VERSION = 1
+        const val DB_VERSION = 2
         const val DB_NAME = "SkillcinemaFilmsDouble"
     }
 }

@@ -1,25 +1,49 @@
 package ru.diplomnaya.skilllcinema.presentation.profile
 
-import android.content.DialogInterface
+import android.Manifest
+import android.app.Notification
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
+import android.content.ContentResolver
+import android.content.Context
+import android.content.Context.NOTIFICATION_SERVICE
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.graphics.BitmapFactory
+import android.graphics.Color
+import android.media.AudioAttributes
+import android.media.RingtoneManager
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.os.Handler
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
+import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.AppCompatButton
+import androidx.core.app.ActivityCompat
+import androidx.core.app.NotificationCompat
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.coroutineScope
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.test.core.app.ApplicationProvider.getApplicationContext
+import com.squareup.picasso.Picasso
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import ru.diplomnaya.skilllcinema.R
@@ -28,8 +52,6 @@ import ru.diplomnaya.skilllcinema.model.Movie
 import ru.diplomnaya.skilllcinema.model.database.AlreadyViewedEntity
 import ru.diplomnaya.skilllcinema.model.database.CollectionFilm
 import ru.diplomnaya.skilllcinema.model.database.Collections
-import ru.diplomnaya.skilllcinema.model.database.Country
-import ru.diplomnaya.skilllcinema.model.database.Genre
 import ru.diplomnaya.skilllcinema.model.database.InterestedFilmsEntity
 import ru.diplomnaya.skilllcinema.model.database.InterestedStaffEntity
 import ru.diplomnaya.skilllcinema.model.entities.StaffStarred
@@ -38,17 +60,22 @@ import ru.diplomnaya.skilllcinema.presentation.detail.CollectionsAlreadyViewedVi
 import ru.diplomnaya.skilllcinema.presentation.detail.CollectionsFavouritesFilmsViewModel
 import ru.diplomnaya.skilllcinema.presentation.detail.CollectionsWantToSeeViewModel
 import ru.diplomnaya.skilllcinema.presentation.detail.GetFilmDetailInfoViewModel
+import ru.diplomnaya.skilllcinema.presentation.intro.AuthenticationActivity
+import ru.diplomnaya.skilllcinema.presentation.main.MainActivity
 import ru.diplomnaya.skilllcinema.presentation.main.PremieresListViewModel
 import ru.diplomnaya.skilllcinema.presentation.myCollection.CollectionsViewModel
+import ru.diplomnaya.skilllcinema.presentation.profile.ProfileFragment.Profile.NOTIFICATION_CHANNEL_ID
+import ru.diplomnaya.skilllcinema.presentation.profile.ProfileFragment.Profile.NOTIFICATION_ID
+import ru.diplomnaya.skilllcinema.presentation.profile.ProfileFragment.Profile.addNewCollectionFlag
+import ru.diplomnaya.skilllcinema.presentation.profile.ProfileFragment.Profile.collectionSize
 import ru.diplomnaya.skilllcinema.presentation.profile.ProfileFragment.Profile.interestedFilmsList
 import ru.diplomnaya.skilllcinema.presentation.profile.ProfileFragment.Profile.interestedStaffList
-
 import ru.diplomnaya.skilllcinema.utilits.ItemOffsetDecoration
+import ru.diplomnaya.skilllcinema.utilits.getScreenHeight
+import ru.diplomnaya.skilllcinema.utilits.getScreenWidth
 import ru.diplomnaya.skilllcinema.view.FullUsesAdapters.AlreadyViewedAdapterForConcatAdapter
-import ru.diplomnaya.skilllcinema.view.MovieListFragmentDirections
-import ru.diplomnaya.skilllcinema.view.Movies
-
 import kotlin.properties.Delegates
+
 
 class ProfileFragment : Fragment() {
     private var _binding: FragmentProfileBinding? = null
@@ -84,9 +111,13 @@ class ProfileFragment : Fragment() {
         return binding.root
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+if(addNewCollectionFlag){
+    findNavController().popBackStack()
+    findNavController().navigate(R.id.profileFragment2)
+}
         lifecycle.coroutineScope.launch {
             collectionsAlreadyViewedViewMode_Profile.getAllAlreadyViewedFilms()
             favouritesFilmsViewModel_Profile.getAllFavouritesFilms()
@@ -105,11 +136,11 @@ class ProfileFragment : Fragment() {
         }
 
         binding.favouriteTile.setTextForNameCollection("Любимые")
-        binding.favouriteTile.setImageCollection(R.drawable.heart)
+        binding.favouriteTile.setImageCollection(ru.diplomnaya.skilllcinema.R.drawable.heart)
 
         binding.favouriteTile.setDeleteCollectionButtonVisibility()
         binding.wantToSee.setTextForNameCollection("Хочу посмотреть")
-        binding.wantToSee.setImageCollection(R.drawable.bookmark)
+        binding.wantToSee.setImageCollection(ru.diplomnaya.skilllcinema.R.drawable.bookmark)
 
         binding.wantToSee.setDeleteCollectionButtonVisibility()
 
@@ -124,35 +155,36 @@ class ProfileFragment : Fragment() {
 
         binding.favouriteTile.setOnClickListener {
             val args = Bundle()
-            args.putString("name","Любимые")
-            findNavController().navigate(R.id.favouriteFragment,args)
+            args.putString("name", "Любимые")
+            findNavController().navigate(ru.diplomnaya.skilllcinema.R.id.favouriteFragment, args)
 
         }
 
         binding.createNewCollectionSecondUse.setOnClickListener {
             val liSecondUse = LayoutInflater.from(requireActivity())
-            val viewDialogSecondUse = liSecondUse.inflate(R.layout.add_collection_dialog, null)
+            val viewDialogSecondUse =
+                liSecondUse.inflate(ru.diplomnaya.skilllcinema.R.layout.add_collection_dialog, null)
             val textFieldCollectionSecondUse =
-                viewDialogSecondUse.findViewById<View>(R.id.name_collection) as EditText
+                viewDialogSecondUse.findViewById<View>(ru.diplomnaya.skilllcinema.R.id.name_collection) as EditText
             val closeButtonSecondUse =
-                viewDialogSecondUse.findViewById<View>(R.id.cancelbtn) as ImageButton
+                viewDialogSecondUse.findViewById<View>(ru.diplomnaya.skilllcinema.R.id.cancelbtn) as ImageButton
             val saveCollection =
-                viewDialogSecondUse.findViewById<View>(R.id.save_collection) as Button
+                viewDialogSecondUse.findViewById<View>(ru.diplomnaya.skilllcinema.R.id.save_collection) as Button
             val dialog = AlertDialog.Builder(requireActivity())
                 .setView(viewDialogSecondUse)
                 .show()
             saveCollection.setOnClickListener {
+                addNewCollectionFlag=true
                 collectionsViewModel.addNewCollection(
                     Collections(
                         0, textFieldCollectionSecondUse.text.toString()
                     )
                 )
-                dialog.dismiss()
-                val action =
-                    ProfileFragmentDirections.actionProfileFragment2ToMyCollectionFragment(
-                        textFieldCollectionSecondUse.text.toString()
-                    )
-                findNavController().navigate(action)
+                dialog.dismiss()              
+                        createNotification(textFieldCollectionSecondUse.text.toString())
+                        newMakeCollectionToast(textFieldCollectionSecondUse.text.toString(),1)
+
+                     //   loadCollection(textFieldCollectionSecondUse.text.toString())
 
             }
             closeButtonSecondUse.setOnClickListener {
@@ -168,11 +200,13 @@ class ProfileFragment : Fragment() {
 
             var idNumber = 1
             if (list.size == 0) {
-//                Toast.makeText(
-//                    requireContext(), "У Вас нету пока своих коллекций", Toast.LENGTH_LONG
-//                ).show()
+            
+                
+
             } else {
+               
                 if (list.size != 0 && !Profile.itemAddFlag_Profile) {
+                    collectionSize=list.size
                     var nameElement = mutableListOf<String>()
                     var sizeFilmsInCollection = mutableListOf<String>()
                     for (innerList in list) {
@@ -263,6 +297,74 @@ class ProfileFragment : Fragment() {
             }
         }
 
+
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+    }
+
+    private fun newMakeCollectionToast(item: String) {
+
+    }
+
+    private fun newMakeCollectionToast(item: String,  size: Int) {
+        val inflater = layoutInflater;
+        val layout = inflater.inflate(
+            R.layout.toast_layout,
+            requireActivity().findViewById(R.id.toast_layout_root)
+        );
+        val image = layout.findViewById<ImageView>(R.id.image_toast);
+        image.setImageResource(R.drawable.make_many_jobs)
+        val text = layout.findViewById<TextView>(R.id.toast_text);
+        if (size>0){
+        text.text = "Создаётся коллекция : $item"
+        val toast = Toast(requireContext());
+        toast.setGravity(Gravity.CENTER_VERTICAL, getScreenWidth() / 2, getScreenHeight() / 2);
+        toast.duration = Toast.LENGTH_LONG;
+        toast.setView(layout);
+        toast.show()
+          loadCollectionFragment(item)
+        }
+        else {
+            text.text = "Создайте особенную коллекцию!"
+            val toast = Toast(requireContext());
+         //   toast.setGravity(Gravity.CENTER_VERTICAL, getScreenWidth() / 2, getScreenHeight() / 2);
+            toast.duration = Toast.LENGTH_LONG;
+            toast.setView(layout);
+            toast.show()
+
+        }
+
+    }
+    private fun deleteOldCollectionToast(item: String) {
+        val inflater = layoutInflater;
+        val layout = inflater.inflate(
+            R.layout.toast_layout,
+            requireActivity().findViewById(R.id.toast_layout_root)
+        );
+        val image = layout.findViewById<ImageView>(R.id.image_toast);
+        image.setImageResource(R.drawable.police)
+        val text = layout.findViewById<TextView>(R.id.toast_text);
+
+            text.text = "Удаляется коллекция : $item"
+            val toast = Toast(requireContext());
+            toast.setGravity(Gravity.CENTER_VERTICAL, getScreenWidth() / 2, getScreenHeight() / 2);
+            toast.duration = Toast.LENGTH_LONG;
+            toast.setView(layout);
+            toast.show()
+        findNavController().popBackStack()
+        findNavController().navigate(R.id.profileFragment2)
+
+    }
+    fun loadCollectionFragment(name: String) {
+        val action =
+            ProfileFragmentDirections.actionProfileFragment2ToMyCollectionFragment(
+                name
+            )
+        findNavController().navigate(action)
     }
 
     private fun onItemClickOnListStaffs(item: StaffStarred) {
@@ -299,6 +401,82 @@ class ProfileFragment : Fragment() {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun createNotification(notificationMessage: String) {
+        //val intent = requireActivity().packageManager.getLaunchIntentForPackage("ru.diplomnaya.skilllcinema")
+        val intent = Intent(requireContext(), AuthenticationActivity::class.java)
+        intent!!.flags = Intent.FLAG_ACTIVITY_SINGLE_TOP
+        val pendingIntent =
+            PendingIntent.getActivity(requireContext(), 0, intent, PendingIntent.FLAG_IMMUTABLE)
+        val notification = NotificationCompat.Builder(requireContext(), NOTIFICATION_CHANNEL_ID)
+            .setSmallIcon(ru.diplomnaya.skilllcinema.R.drawable.add_to_collection)
+            .setContentTitle("Создание коллекции")
+            .setContentText("Создание коллекции-$notificationMessage выполнено!")
+            .setPriority(NotificationCompat.PRIORITY_MAX)
+//            .setContentIntent(pendingIntent)
+            .setVibrate(longArrayOf(500))
+            .setLargeIcon(
+                BitmapFactory.decodeResource(getResources(),
+                R.drawable.fotosimple))
+            .addAction(ru.diplomnaya.skilllcinema.R.drawable.main, "В коллекцию", pendingIntent)
+            .setAutoCancel(true)
+            .setDefaults(Notification.DEFAULT_SOUND)
+            .setDefaults(Notification.DEFAULT_LIGHTS)
+            .setDefaults(Notification.DEFAULT_VIBRATE)
+            .build()
+        val ringURI = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+        notification.sound = ringURI
+        notification.ledARGB = Color.RED
+        notification.ledOffMS = 0
+        notification.ledOnMS = 1
+        notification.flags = notification.flags or Notification.FLAG_SHOW_LIGHTS
+
+        if (ActivityCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.POST_NOTIFICATIONS
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            return
+        }
+        val notifyManager = activity?.getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+        createNotificationChannel()
+        notifyManager.notify(NOTIFICATION_ID, notification)
+    }
+
+    private fun createNotificationChannel() {
+        val sound =
+            Uri.parse("android.resource://" + "ru.diplomnaya.skilllcinema" + "/" + ru.diplomnaya.skilllcinema.R.raw.close)
+        val name = "Новый канал"
+        val descriptionText = "Это ...канал"
+        val priority = NotificationManager.IMPORTANCE_HIGH
+        val vibrationPattern = longArrayOf(500)
+        val channel = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel(NOTIFICATION_CHANNEL_ID, name, priority).apply {
+                description = descriptionText
+            }
+        } else {
+            TODO("VERSION.SDK_INT < O")
+        }
+        channel.description = "NOTIFICATION_DESCRIPTION"
+        channel.lockscreenVisibility = Notification.VISIBILITY_PUBLIC
+        channel.enableLights(true)
+        channel.lightColor = Color.RED
+        channel.enableVibration(true)
+        channel.vibrationPattern = vibrationPattern
+
+        val attributes =
+            AudioAttributes.Builder().setUsage(AudioAttributes.USAGE_NOTIFICATION).build()
+        channel.setSound(sound, attributes)
+        channel.shouldShowLights()
+        activity?.getNotificationManager()?.createNotificationChannel(channel)
+//       val notifyManager= activity?.getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+//        notifyManager.createNotificationChannel(channel)
+
+    }
+
+    private fun Context.getNotificationManager(): NotificationManager {
+        return getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+    }
 
     fun onItemClickOnListPremieres(item: Movie) {
         val action =
@@ -421,7 +599,8 @@ class ProfileFragment : Fragment() {
                 cardView1.id = colFirstInSlice + 1
                 cardView1.transitionName = nameCollection[colFirstInSlice]
                 val rv = cardView1.rootView
-                val lookCollection = rv.findViewById<AppCompatButton>(R.id.button_view_collection)
+                val lookCollection =
+                    rv.findViewById<AppCompatButton>(ru.diplomnaya.skilllcinema.R.id.button_view_collection)
                 lookCollection.text = sizeCollection[colFirstInSlice]
                 lookCollection.setOnClickListener {
                     val action =
@@ -431,13 +610,10 @@ class ProfileFragment : Fragment() {
                     findNavController().navigate(action)
 
                 }
-                val delButton = rv.findViewById<ImageButton>(R.id.delete_collection)
+                val delButton =
+                    rv.findViewById<ImageButton>(ru.diplomnaya.skilllcinema.R.id.delete_collection)
                 delButton.setOnClickListener(View.OnClickListener { view ->
-//                    Toast.makeText(
-//                        requireContext(),
-//                        "Работает удаление коллекции ${cardView1.id}",
-//                        Toast.LENGTH_SHORT
-//                    ).show()
+                    deleteOldCollectionToast(cardView1.getNameCollection())
                     viewLifecycleOwner.lifecycleScope.launch {
                         deleteCollection(cardView1.getNameCollection())
                     }
@@ -451,7 +627,8 @@ class ProfileFragment : Fragment() {
                 cardView2.id = colSecondInSlice + 1
                 cardView2.transitionName = nameCollection[colSecondInSlice]
                 val rv2 = cardView2.rootView
-                val lookCollection2 = rv2.findViewById<AppCompatButton>(R.id.button_view_collection)
+                val lookCollection2 =
+                    rv2.findViewById<AppCompatButton>(ru.diplomnaya.skilllcinema.R.id.button_view_collection)
                 lookCollection2.text = sizeCollection[colSecondInSlice]
                 lookCollection2.setOnClickListener {
                     val action =
@@ -461,13 +638,10 @@ class ProfileFragment : Fragment() {
                     findNavController().navigate(action)
 
                 }
-                val delButton2 = rv2.findViewById<ImageButton>(R.id.delete_collection)
+                val delButton2 =
+                    rv2.findViewById<ImageButton>(ru.diplomnaya.skilllcinema.R.id.delete_collection)
                 delButton2.setOnClickListener(View.OnClickListener { view ->
-//                    Toast.makeText(
-//                        requireContext(),
-//                        "Работает удаление коллекции ${cardView2.id}",
-//                        Toast.LENGTH_SHORT
-//                    ).show()
+                    deleteOldCollectionToast(cardView2.getNameCollection())
                     viewLifecycleOwner.lifecycleScope.launch {
                         deleteCollection(cardView2.getNameCollection())
                     }
@@ -497,7 +671,7 @@ class ProfileFragment : Fragment() {
 
                     val rv3 = cardView3.rootView
                     val lookCollection3 =
-                        rv3.findViewById<AppCompatButton>(R.id.button_view_collection)
+                        rv3.findViewById<AppCompatButton>(ru.diplomnaya.skilllcinema.R.id.button_view_collection)
                     lookCollection3.text = sizeCollection[colFirstInSlice]
                     lookCollection3.setOnClickListener {
                         val action =
@@ -507,13 +681,10 @@ class ProfileFragment : Fragment() {
                         findNavController().navigate(action)
 
                     }
-                    val delButton3 = rv3.findViewById<ImageButton>(R.id.delete_collection)
+                    val delButton3 =
+                        rv3.findViewById<ImageButton>(ru.diplomnaya.skilllcinema.R.id.delete_collection)
                     delButton3.setOnClickListener(View.OnClickListener { view ->
-//                        Toast.makeText(
-//                            requireContext(),
-//                            "Работает удаление коллекции ${cardView3.id}",
-//                            Toast.LENGTH_SHORT
-//                        ).show()
+                        deleteOldCollectionToast( cardView3.getNameCollection())
                         viewLifecycleOwner.lifecycleScope.launch {
                             deleteCollection(cardView3.getNameCollection())
                         }
@@ -573,11 +744,23 @@ class ProfileFragment : Fragment() {
 
     }
 
+    override fun onPause() {
+        super.onPause()
+
+    }
+
+
+
+
 
     object Profile {
+        const val NOTIFICATION_CHANNEL_ID: String = "канал 1"
+        const val NOTIFICATION_ID = 1000
+        var addNewCollectionFlag=false
         lateinit var interestedFilmsList: List<InterestedFilmsEntity>
         lateinit var interestedStaffList: List<InterestedStaffEntity>
         var idFilm: Int = 1
+        var collectionSize=0
         var amountCollection by Delegates.notNull<Int>()
         var itemAddFlag_Profile = false
         lateinit var collectionFilm_Profile: CollectionFilm

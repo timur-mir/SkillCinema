@@ -87,6 +87,5 @@ class FavouriteFragment:Fragment() {
         toast.setView(layout);
         toast.show()
 
-
     }
 }
