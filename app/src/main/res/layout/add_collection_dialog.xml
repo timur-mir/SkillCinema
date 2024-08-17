@@ -29,7 +29,7 @@
             android:layout_marginTop="80dp"
             android:layout_marginStart="40dp"
             android:padding="6dp"
-            android:hint="Придумайте название для вашей коллекции"
+            android:hint="@string/getNameCollection"
             android:textColorHint="#3B1977"
             android:textColor="#F5F6F8"
             android:textSize="18sp"
@@ -42,7 +42,7 @@
         android:layout_marginTop="150dp"
         android:layout_marginEnd="24dp"
         android:background="@drawable/mybutton2"
-        android:text="Готово"
+        android:text="@string/Ready"
         android:textColor="@color/white" />
     <View
         android:layout_width="match_parent"

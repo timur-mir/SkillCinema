@@ -126,8 +126,6 @@ class MyCollectionFragment : Fragment() {
             listCollectionForRemove.forEach { movie ->
                 collectionsViewModel.removeFilm(movie)
             }
-            findNavController().popBackStack()
-
         }
     }
     private fun onItemClickOnListSimpleCollection(item: String, posterUrl:String) {

@@ -1,6 +1,7 @@
 package ru.diplomnaya.skilllcinema.view
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.graphics.Color
 import android.media.MediaPlayer
 import android.os.Bundle
@@ -34,7 +35,9 @@ import ru.diplomnaya.skilllcinema.model.database.InterestedFilmsEntity
 import ru.diplomnaya.skilllcinema.presentation.detail.CollectionsAlreadyViewedViewModel
 import ru.diplomnaya.skilllcinema.presentation.main.AnyCountriesAndGenresFilmsViewModel
 import ru.diplomnaya.skilllcinema.presentation.main.AnyCountriesAndGenresFilmsViewModelSecondVariant
+import ru.diplomnaya.skilllcinema.presentation.main.MainActivity
 import ru.diplomnaya.skilllcinema.presentation.main.PremieresListViewModel
+import ru.diplomnaya.skilllcinema.presentation.main.SplashActivity
 import ru.diplomnaya.skilllcinema.presentation.main.Top250ListViewModel
 import ru.diplomnaya.skilllcinema.presentation.main.TopAwaitViewModel
 import ru.diplomnaya.skilllcinema.presentation.main.Tv_SeriesViewModel
@@ -128,10 +131,13 @@ class MovieListFragment : Fragment() {
                     audio2.reset()
                     audio2.release()
                     audio2 = null
+                    val intent = Intent(requireContext(), SplashActivity::class.java)
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                    startActivity(intent)
                     activity?.finish()
-                    System.exit(1)
-                    // exitProcess(0)
-                }, 3000)
+//                    System.exit(1)
+//                    // exitProcess(0)
+                }, 1300)
                 true
             }
 

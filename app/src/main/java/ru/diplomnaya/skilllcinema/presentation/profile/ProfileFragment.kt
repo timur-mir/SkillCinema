@@ -419,7 +419,7 @@ if(addNewCollectionFlag){
             .setLargeIcon(
                 BitmapFactory.decodeResource(getResources(),
                 R.drawable.fotosimple))
-            .addAction(ru.diplomnaya.skilllcinema.R.drawable.main, "В коллекцию", pendingIntent)
+            .addAction(ru.diplomnaya.skilllcinema.R.drawable.main, "В приложение", pendingIntent)
             .setAutoCancel(true)
             .setDefaults(Notification.DEFAULT_SOUND)
             .setDefaults(Notification.DEFAULT_LIGHTS)

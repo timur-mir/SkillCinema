@@ -82,7 +82,11 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:exported="true"/>
-<!--        <activity android:name="ru.diplomnaya.skilllcinema.FragmentTestActivity"/>-->
+        <activity android:name=".presentation.main.SplashActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:exported="true"/>
+        <!--        <activity android:name="ru.diplomnaya.skilllcinema.FragmentTestActivity"/>-->
         <receiver android:name=".presentation.intro.IntroActivity$Companion$WifiReceiver"
             android:enabled="true"
             android:exported="true">

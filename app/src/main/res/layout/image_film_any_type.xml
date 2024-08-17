@@ -28,6 +28,7 @@
             android:contentDescription="TODO"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            android:backgroundTint="#DFEF44"
             app:srcCompat="@drawable/save_picture" />
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/open_gallery"
@@ -36,6 +37,7 @@
             android:layout_gravity="end"
             android:layout_marginTop="138dp"
             android:layout_marginEnd="28dp"
+            android:backgroundTint="#D74CEF"
             android:contentDescription="TODO"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"

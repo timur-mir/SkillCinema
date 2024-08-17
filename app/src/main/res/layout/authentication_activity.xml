@@ -14,7 +14,7 @@
         android:layout_marginTop="200dp"
         android:textColor="@color/white"/>
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imageview"
         android:layout_width="100dp"
         android:layout_height="100dp"
