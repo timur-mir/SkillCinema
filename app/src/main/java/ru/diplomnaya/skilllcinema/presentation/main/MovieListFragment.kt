@@ -85,7 +85,7 @@ class MovieListFragment : Fragment() {
     private val interestedFilmsViewModel by viewModels<InterestedFilmsViewModel>()
 
     companion object {
-        var audioFon = MediaPlayer.create(App.appContext, R.raw.fon)
+        var audioFon = MediaPlayer.create(App.appContext, R.raw.fon_elektr)
     }
 
     lateinit var genres: String
@@ -113,8 +113,11 @@ class MovieListFragment : Fragment() {
         return when (item.itemId) {
 
             R.id.exit_programm -> {
-                var audio2 = MediaPlayer.create(requireContext(), R.raw.close)
-                audio2.start()
+                audioFon.apply {
+                    pause()
+                    reset()
+                    release()
+                }.also { audioFon =null }
                 val closeWarnings = AlertDialog.Builder(requireContext())
                 closeWarnings.setTitle("Закрытие приложения")
                 closeWarnings.setMessage("Программа поиска фильмов завершает свою работу")
@@ -126,18 +129,14 @@ class MovieListFragment : Fragment() {
                 progressBar.layoutParams = lp
                 closeWarnings.setView(progressBar)
                 closeWarnings.show()
-
                 Handler().postDelayed(Runnable {
-                    audio2.reset()
-                    audio2.release()
-                    audio2 = null
                     val intent = Intent(requireContext(), SplashActivity::class.java)
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                     startActivity(intent)
                     activity?.finish()
 //                    System.exit(1)
 //                    // exitProcess(0)
-                }, 1300)
+                }, 1000)
                 true
             }
 
@@ -425,13 +424,14 @@ class MovieListFragment : Fragment() {
 
     override fun onStop() {
         super.onStop()
-        audioFon.pause()
+//      audioFon.pause()
+//        audioFon.reset()
+//        audioFon.release()
+//        audioFon = null
     }
     override fun onDestroy() {
         super.onDestroy()
-        audioFon.reset()
-        audioFon.release()
-        audioFon = null
+
 ////        _binding=null
 //        binding.moviesListRecycler.adapter=null
 //        binding.topAwaitListRecycler.adapter=null
@@ -443,6 +443,7 @@ class MovieListFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        audioFon = null
     }
 
 }

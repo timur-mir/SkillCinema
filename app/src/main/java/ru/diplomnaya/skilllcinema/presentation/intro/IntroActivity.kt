@@ -8,6 +8,7 @@ import android.content.IntentFilter
 import android.graphics.Color
 import android.net.ConnectivityManager
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -61,12 +62,26 @@ class IntroActivity : AppCompatActivity() {
             drawableRes = R.drawable.intro3screen
         )
     )
+    private val receiverWifi by lazy { WifiReceiver() }
     private var _binding: ActivityIntroBinding? = null
     private val binding get() = _binding!!
+    override fun onPause() {
+        super.onPause()
+        try {
+            unregisterReceiver(receiverWifi)
+        } catch (e: IllegalArgumentException) {
+            Log.e("Broadcast", "Приёмник проверки состоянии сети не зарегистрирован", e)
+            Toast.makeText(
+               this,
+                "Приёмник проверки состоянии сети не зарегистрирован",
+                Toast.LENGTH_SHORT
+            )
+                .show();
+        }
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val filter = IntentFilter().apply { addAction(ConnectivityManager.CONNECTIVITY_ACTION) }
-        val receiverWifi = WifiReceiver()
         registerReceiver(
             receiverWifi,
             filter

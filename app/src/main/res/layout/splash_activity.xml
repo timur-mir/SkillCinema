@@ -1,9 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient"
+    android:background="@drawable/fon_tekstura"
+    android:orientation="vertical">
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/copyrightTextView"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:textColor="@color/white"
+        android:background="#00999999"
+        android:text=""
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+<androidx.constraintlayout.motion.widget.MotionLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
     android:id="@+id/motionLayout"
     app:layoutDescription="@xml/splash_activity_scene">
 
@@ -17,24 +32,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/titleTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <ImageView
+        android:id="@+id/table_image"
+        android:layout_width="400dp"
+        android:layout_height="400dp"
         android:alpha="0.0"
         android:text="@string/fly1"
+        android:src="@drawable/pisatelskoe_pero"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/copyrightTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/white"
-        android:text="made by T.M.I."
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.motion.widget.MotionLayout>
+
+</LinearLayout>
