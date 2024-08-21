@@ -380,7 +380,7 @@ if(addNewCollectionFlag){
         viewLifecycleOwner.lifecycleScope.launch {
 //            Toast.makeText(
 //                requireContext(),
-//                "Удаление коллекции интересовавших Вас...",
+//                "Удаление коллекции интересовавшей Вас...",
 //                Toast.LENGTH_SHORT
 //            ).show()
             interestedFilmsViewModelProfile.removeAllInterestedFilms()
