@@ -20,7 +20,7 @@ class SplashActivity : AppCompatActivity() {
     private val binding get() = _binding!!
 
     companion object {
-        var audioFon = MediaPlayer.create(App.appContext, R.raw.fon)
+        var audioFon: MediaPlayer? = MediaPlayer.create(App.appContext, R.raw.fon)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,7 +28,7 @@ class SplashActivity : AppCompatActivity() {
         _binding = SplashActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.logoImageView.bringToFront()
-        audioFon.start()
+        audioFon?.start()
 
         binding.motionLayout.addTransitionListener(object : MotionLayout.TransitionListener {
             override fun onTransitionStarted(
@@ -83,16 +83,23 @@ class SplashActivity : AppCompatActivity() {
             }
         }
        binding.logoImageView.postDelayed({binding.logoImageView.visibility= View.INVISIBLE},10000)
-        Handler().postDelayed(Runnable {
-            audioFon.apply {
-                pause()
-                reset()
-                release()
-            }.also {
-                audioFon = null
-                finish()
-                exitProcess(1)
-            }
-        }, 32000)
+//        Handler().postDelayed(Runnable {
+//            audioFon?.apply {
+//                pause()
+//                reset()
+//                release()
+//            }.also {
+//                audioFon = null
+//                finish()
+//                exitProcess(1)
+//            }
+//        }, 32000)
+    }
+    override fun onPause() {
+        super.onPause()
+        audioFon?.pause()
+        audioFon?.reset()
+        audioFon?.release()
+        audioFon = null
     }
 }

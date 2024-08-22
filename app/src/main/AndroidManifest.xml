@@ -24,28 +24,28 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Skillcinema"
-        tools:targetApi="3">
+        >
         <activity
             android:name=".presentation.intro.AuthenticationActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:exported="true">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
+<!--                        <intent-filter>-->
+<!--                            <action android:name="android.intent.action.MAIN" />-->
 
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+<!--                            <category android:name="android.intent.category.LAUNCHER" />-->
+<!--                        </intent-filter>-->
         </activity>
         <activity
             android:name=".presentation.intro.IntroActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:exported="true">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".presentation.filmography.ActorFilmographyActivity"
@@ -57,10 +57,10 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:exported="true"/>
-             <activity
+        <activity
             android:name=".presentation.intro.LoadingActivity"
-                 android:launchMode="singleTask"
-                 android:screenOrientation="portrait"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
             android:exported="true"/>
         <activity
             android:name=".presentation.main.MainActivity"

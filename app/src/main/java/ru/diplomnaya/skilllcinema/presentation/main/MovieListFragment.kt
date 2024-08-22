@@ -38,6 +38,7 @@ import ru.diplomnaya.skilllcinema.presentation.main.AnyCountriesAndGenresFilmsVi
 import ru.diplomnaya.skilllcinema.presentation.main.MainActivity
 import ru.diplomnaya.skilllcinema.presentation.main.PremieresListViewModel
 import ru.diplomnaya.skilllcinema.presentation.main.SplashActivity
+import ru.diplomnaya.skilllcinema.presentation.main.SplashActivity.Companion.audioFon
 import ru.diplomnaya.skilllcinema.presentation.main.Top250ListViewModel
 import ru.diplomnaya.skilllcinema.presentation.main.TopAwaitViewModel
 import ru.diplomnaya.skilllcinema.presentation.main.Tv_SeriesViewModel
@@ -84,9 +85,8 @@ class MovieListFragment : Fragment() {
     private val collectionAlreadyViewedViewModel by viewModels<CollectionsAlreadyViewedViewModel>()
     private val interestedFilmsViewModel by viewModels<InterestedFilmsViewModel>()
 
-    companion object {
-        var audioFon = MediaPlayer.create(App.appContext, R.raw.fon_elektr)
-    }
+
+    var audioFon: MediaPlayer? = null
 
     lateinit var genres: String
     lateinit var countries: String
@@ -111,13 +111,12 @@ class MovieListFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-
             R.id.exit_programm -> {
-                audioFon.apply {
+                audioFon?.apply {
                     pause()
                     reset()
                     release()
-                }.also { audioFon =null }
+                }.also { audioFon = null }
                 val closeWarnings = AlertDialog.Builder(requireContext())
                 closeWarnings.setTitle("Закрытие приложения")
                 closeWarnings.setMessage("Программа поиска фильмов завершает свою работу")
@@ -130,23 +129,17 @@ class MovieListFragment : Fragment() {
                 closeWarnings.setView(progressBar)
                 closeWarnings.show()
                 Handler().postDelayed(Runnable {
-                    val intent = Intent(requireContext(), SplashActivity::class.java)
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                    startActivity(intent)
                     activity?.finish()
-//                    System.exit(1)
-//                    // exitProcess(0)
+                    System.exit(1)
+                    // exitProcess(0)
                 }, 1000)
                 true
             }
 
             R.id.about_program -> {
-                val dialogWarnings = AlertDialog.Builder(requireContext())
-                dialogWarnings.setTitle("О программе")
-                dialogWarnings.setMessage(resources.getString(R.string.about_programm))
-                dialogWarnings.setPositiveButton(android.R.string.yes) { dialog, which ->
-                }
-                dialogWarnings.show()
+                val intent = Intent(requireContext(), SplashActivity::class.java)
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                startActivity(intent)
                 true
             }
 
@@ -161,12 +154,11 @@ class MovieListFragment : Fragment() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
         binding.mainHeaderFilmLists.setSingleLine()
-        binding.mainHeaderFilmLists.ellipsize=TextUtils.TruncateAt.MARQUEE
-        binding.mainHeaderFilmLists.marqueeRepeatLimit=-1
-        binding.mainHeaderFilmLists.isSelected=true
+        binding.mainHeaderFilmLists.ellipsize = TextUtils.TruncateAt.MARQUEE
+        binding.mainHeaderFilmLists.marqueeRepeatLimit = -1
+        binding.mainHeaderFilmLists.isSelected = true
         setHasOptionsMenu(true)
-        audioFon.start()
-        audioFon.isLooping = true
+
 
         with(binding.moviesListRecycler) {
             adapter = movieAdapter
@@ -198,17 +190,16 @@ class MovieListFragment : Fragment() {
             setHasFixedSize(true)
             addItemDecoration(ItemOffsetDecoration(requireContext()))
         }
-        var switchState=true
-        binding.switchFonMus.setOnClickListener{
-            if(switchState){
-                audioFon.pause()
+        var switchState = true
+        binding.switchFonMus.setOnClickListener {
+            if (switchState) {
+                audioFon?.pause()
                 binding.switchFonMus.setImageResource(R.drawable.volume_off)
-                switchState=false
-            }
-            else {
+                switchState = false
+            } else {
                 binding.switchFonMus.setImageResource(R.drawable.volume_down)
-                    audioFon.start()
-                switchState=true
+                audioFon?.start()
+                switchState = true
             }
         }
         viewModel.movies.onEach { movies ->
@@ -386,6 +377,13 @@ class MovieListFragment : Fragment() {
 
     }
 
+    override fun onResume() {
+        super.onResume()
+        audioFon = MediaPlayer.create(App.appContext, R.raw.fon_elektr)
+        audioFon?.start()
+        audioFon?.isLooping = true
+    }
+
     private fun updateCountryGenreName() {
         binding.randomGenreTitle.text =
             "${FilmGenreAndCountry.genreName.toString()}   ${FilmGenreAndCountry.countryName.toString()}"
@@ -424,14 +422,27 @@ class MovieListFragment : Fragment() {
 
     override fun onStop() {
         super.onStop()
-//      audioFon.pause()
+//        audioFon.pause()
 //        audioFon.reset()
 //        audioFon.release()
 //        audioFon = null
     }
+
+    override fun onPause() {
+        super.onPause()
+        audioFon?.pause()
+        audioFon?.reset()
+        audioFon?.release()
+        audioFon = null
+    }
+
     override fun onDestroy() {
         super.onDestroy()
-
+        super.onPause()
+        audioFon?.pause()
+        audioFon?.reset()
+        audioFon?.release()
+        audioFon = null
 ////        _binding=null
 //        binding.moviesListRecycler.adapter=null
 //        binding.topAwaitListRecycler.adapter=null
@@ -443,7 +454,10 @@ class MovieListFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        audioFon = null
+//        audioFon.pause()
+//        audioFon.reset()
+//        audioFon.release()
+//        audioFon = null
     }
 
 }
